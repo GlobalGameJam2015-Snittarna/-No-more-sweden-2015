@@ -18,6 +18,20 @@ namespace no_more_sweden_2015
             Position += Velocity * new Vector2(Speed, Speed);
         }
 
+        public void Deaccelerate(bool goReverse)
+        {
+            Speed -=
+
+            if (goReverse)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+         
         public void Impact()
         {
             if (explosive)

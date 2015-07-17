@@ -12,7 +12,7 @@ namespace no_more_sweden_2015
     {
         public static Texture2D genericProjectile;
 
-        public void Load(ContentManager content)
+        public static void Load(ContentManager content)
         {
             genericProjectile = content.Load<Texture2D>("genericProjectile");
         }
