@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace no_more_sweden_2015
 {
@@ -13,11 +14,13 @@ namespace no_more_sweden_2015
 
         public bool explosive;
 
+        public PlayerIndex PlayerIndex { get; set; }
+
         public void CollisionCheck()
         {
-            foreach(GameObject g in GameObjectManager.gameObjects.Where(item => item.solid == true))
+            foreach(Player g in GameObjectManager.gameObjects.Where(item => item.solid == true))
             {
-                if (HitBox.Intersects(g.HitBox))
+                if (HitBox.Intersects(g.HitBox) && g.playerIndex != PlayerIndex)
                 {
                     g.Health -= (sbyte)Damege;
                     Impact();

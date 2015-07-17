@@ -8,7 +8,7 @@ namespace no_more_sweden_2015
 {
     class SimpleBullet : Projectile
     {
-        public SimpleBullet(Vector2 position2, byte damege2, float angle2, float speed2)
+        public SimpleBullet(Vector2 position2, byte damege2, float angle2, float speed2, PlayerIndex playerIndex2)
         {
             Position = position2;
             
@@ -20,6 +20,8 @@ namespace no_more_sweden_2015
             Sprite = AssetManager.genericProjectile;
             Color = Color.Red;
             Scale = 1;
+
+            PlayerIndex = playerIndex2;
         }
 
         public override void Update()

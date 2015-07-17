@@ -35,11 +35,20 @@ namespace no_more_sweden_2015
                 {
                     if (type <= 4)
                     {
-
+                        p.gunType = type;
                     }
                     else
                     {
+                        if (type == 5)
+                        {
+                            if (p.Health < 3)
+                                p.Health += 1;
+                        }
 
+                        if (type == 6)
+                        {
+                            
+                        }
                     }
                 }
             }
