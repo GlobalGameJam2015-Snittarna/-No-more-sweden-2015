@@ -19,17 +19,20 @@ namespace no_more_sweden_2015
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Camera camera = new Camera();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 640;
             Content.RootDirectory = "Content";
         }
-
+        
         protected override void Initialize()
         {
             AssetManager.Load(Content);
-            GameObjectManager.Add(new Player(PlayerIndex.One));
+            GameObjectManager.Add(new Player(PlayerIndex.One, new Vector2(100, 100)));
+
             base.Initialize();
         }
 
@@ -40,7 +43,7 @@ namespace no_more_sweden_2015
 
         protected override void UnloadContent()
         {
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -49,6 +52,7 @@ namespace no_more_sweden_2015
                 this.Exit();
 
             GameObjectManager.Update();
+            camera.MoveToMid();
 
             base.Update(gameTime);
         }
@@ -57,7 +61,7 @@ namespace no_more_sweden_2015
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.get_transformation(GraphicsDevice));
             foreach (GameObject g in GameObjectManager.gameObjects)
             {
                 g.DrawSprite(spriteBatch);

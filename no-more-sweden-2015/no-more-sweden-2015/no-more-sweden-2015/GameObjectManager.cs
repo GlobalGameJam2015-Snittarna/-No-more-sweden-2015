@@ -11,7 +11,7 @@ namespace no_more_sweden_2015
         public static List<GameObject> gameObjects = new List<GameObject>();
         static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         static List<GameObject> gameObjectsToRemove = new List<GameObject>();
-        
+
         public static void Update()
         {
             foreach (GameObject g in gameObjects)
