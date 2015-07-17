@@ -26,6 +26,27 @@ namespace no_more_sweden_2015
             get { return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height); }
         }
 
+        public short MaxAnimationCount { get; set; }
+        public short AnimationCount { get; set; }
+        public short MaxFrame { get; set; }
+
+        public void Animate()
+        {
+            AnimationCount += 1;
+
+            if (AnimationCount >= MaxAnimationCount)
+            {
+                Frame = new Rectangle(Frame.X + (Frame.Width + 1), Frame.Y, Frame.Width, Frame.Height);
+
+                if (Frame.X / Frame.Width >= MaxFrame)
+                {
+                    Frame = new Rectangle(0, Frame.Y, Frame.Width, Frame.Height);
+                }
+
+                AnimationCount = 0;
+            }
+        }
+
         public float Depth { get; set; }
         public float Angle { get; set; }
         public float Speed { get; set; }
