@@ -38,9 +38,11 @@ namespace no_more_sweden_2015
         
         public void Impact()
         {
+            Random random = new Random();
+
             if (explosive)
             {
-                
+                GameObjectManager.Add(new Explosions(Position, ExplosionSize, false, Color.Orange, random));
             }
 
             GameObjectManager.Remove(this);
