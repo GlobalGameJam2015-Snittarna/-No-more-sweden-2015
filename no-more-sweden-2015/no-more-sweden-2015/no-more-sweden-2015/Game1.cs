@@ -61,7 +61,7 @@ namespace no_more_sweden_2015
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.get_transformation(GraphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, null, null, camera.get_transformation(GraphicsDevice));
             foreach (GameObject g in GameObjectManager.gameObjects)
             {
                 g.DrawSprite(spriteBatch);

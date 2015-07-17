@@ -30,8 +30,6 @@ namespace no_more_sweden_2015
             Color = Color.White;
             Position = newPosition;
             Sprite = AssetManager.playerBody;
-            acceleration = 0.25f;
-            maxSpeed = 4;
         }
 
         public override void Update()

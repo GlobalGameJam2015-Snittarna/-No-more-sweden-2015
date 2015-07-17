@@ -38,7 +38,7 @@ namespace no_more_sweden_2015
 
         public Camera()
         {
-            _zoom = 2.0f;
+            _zoom = 1.0f;
             _pos = Vector2.Zero;
         }
 
