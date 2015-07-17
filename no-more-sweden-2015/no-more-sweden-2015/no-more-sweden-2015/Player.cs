@@ -17,6 +17,10 @@ namespace no_more_sweden_2015
         PlayerIndex playerIndex;
         float turnSpeed;
         public byte GunType { private get; set; }
+        public byte InvicibleCounter{ private get; set; }
+
+        int fireRate = 10;
+        int fireTimer;
 
         Vector2 velocity;
 
@@ -30,6 +34,7 @@ namespace no_more_sweden_2015
             Color = Color.White;
             Position = newPosition;
             Sprite = AssetManager.playerBody;
+            fireTimer = fireRate;
         }
 
         public override void Update()
@@ -50,7 +55,24 @@ namespace no_more_sweden_2015
                 turnSpeed = 6;
             }
 
+            if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate)
+            {
+                GameObjectManager.Add(new SimpleBullet(Position, 5, Angle, Speed * 2));
+                fireTimer = 0;
+            }
+
+            fireTimer++;
+
             Position += velocity;
+            
+            if (InvicibleCounter > 0)
+            {
+                InvicibleCounter--;
+                solid = false;
+            }
+            else
+                solid = true;
+            
             base.Update();
         }
 

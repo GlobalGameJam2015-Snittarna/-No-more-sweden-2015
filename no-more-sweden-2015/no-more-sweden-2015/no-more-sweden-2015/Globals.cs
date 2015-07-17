@@ -29,6 +29,6 @@ namespace no_more_sweden_2015
             return new Vector2((float)Math.Cos(Globals.DegreesToRadian(angle)), (float)Math.Sin(Globals.DegreesToRadian(angle)));
         }
 
-        public const float G = 0.20f;
+        public const float G = 0;//0.20f;
     }
 }
