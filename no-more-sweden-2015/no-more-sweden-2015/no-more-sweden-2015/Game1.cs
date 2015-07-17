@@ -22,6 +22,7 @@ namespace no_more_sweden_2015
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 640;
             Content.RootDirectory = "Content";
         }
 
