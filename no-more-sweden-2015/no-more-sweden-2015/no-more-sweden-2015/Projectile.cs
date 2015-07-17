@@ -18,18 +18,10 @@ namespace no_more_sweden_2015
             Position += Velocity * new Vector2(Speed, Speed);
         }
 
-        public void Deaccelerate(bool goReverse)
+        public void Deaccelerate(bool goReverse, float deaceelSpeed)
         {
-            Speed -=
-
-            if (goReverse)
-            {
-                
-            }
-            else
-            {
-
-            }
+            if (goReverse || !goReverse && Speed > 0.1f)
+                Speed -= deaceelSpeed;
         }
          
         public void Impact()

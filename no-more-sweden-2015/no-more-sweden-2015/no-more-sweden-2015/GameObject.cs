@@ -66,7 +66,7 @@ namespace no_more_sweden_2015
                 sourceRectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
             }
 
-            spriteBatch.Draw(Sprite, Position, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color.White, Rotation, new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
+            spriteBatch.Draw(Sprite, Position, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color.White, Globals.DegreesToRadian(Rotation), new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
         }
     }
 }
