@@ -43,12 +43,21 @@ namespace no_more_sweden_2015
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            GameObjectManager.Update();
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            foreach (GameObject g in GameObjectManager.gameObjects)
+            {
+                g.DrawSprite(spriteBatch);
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
