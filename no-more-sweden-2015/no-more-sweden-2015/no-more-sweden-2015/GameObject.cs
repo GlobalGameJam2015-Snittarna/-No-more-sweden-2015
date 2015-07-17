@@ -55,6 +55,11 @@ namespace no_more_sweden_2015
         public float Scale { get; set; }
         public float Rotation { get; set; }
 
+        public float DistanceTo(Vector2 target)
+        {
+            return (float)Math.Sqrt((Position.X - target.X) * (Position.X - target.X) + (Position.Y - target.Y) * (Position.Y - target.Y)); 
+        }
+
         public sbyte Health { get; set; }
 
         public Color Color { get; set; }
