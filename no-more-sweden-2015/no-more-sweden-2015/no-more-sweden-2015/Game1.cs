@@ -11,10 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace no_more_sweden_2015
 {
+    /// <summary>
+    /// This is the main type for your game
+    /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;  
+        SpriteBatch spriteBatch;
 
         public Game1()
         {

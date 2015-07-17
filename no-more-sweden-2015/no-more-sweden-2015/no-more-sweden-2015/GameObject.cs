@@ -10,7 +10,7 @@ namespace no_more_sweden_2015
 {
     abstract class GameObject
     {
-        public Vector2 Position { get; set; }
+        public Vector2 Pos { get; set; }
         public Vector2 Velocity 
         { 
             // God is dead
@@ -21,7 +21,7 @@ namespace no_more_sweden_2015
 
         public Rectangle HitBox
         {
-            get { return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Pos.X, (int)Pos.Y, Sprite.Width, Sprite.Height); }
         }
 
         public float Depth { get; set; }
