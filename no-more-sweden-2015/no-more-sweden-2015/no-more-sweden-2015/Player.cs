@@ -32,7 +32,7 @@ namespace no_more_sweden_2015
             base.Update();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawSprite(SpriteBatch spriteBatch)
         {
             
             base.DrawSprite(spriteBatch);
