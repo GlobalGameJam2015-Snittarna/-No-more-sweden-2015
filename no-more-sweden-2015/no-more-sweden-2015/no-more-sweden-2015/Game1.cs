@@ -29,6 +29,7 @@ namespace no_more_sweden_2015
         protected override void Initialize()
         {
             AssetManager.Load(Content);
+            GameObjectManager.Add(new Player(PlayerIndex.One));
             base.Initialize();
         }
 

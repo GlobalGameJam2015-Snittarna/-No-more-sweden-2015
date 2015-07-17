@@ -22,13 +22,19 @@ namespace no_more_sweden_2015
             playerIndex = newPlayerIndex;
             Angle = -90;
             Speed = 1;
+            turnSpeed = 5;
+            Scale = 1;
+            Color = Color.White;
+            Position = new Vector2(100, 100);
+            Sprite = AssetManager.genericProjectile;
         }
 
         public override void Update()
         {
             Angle += turnSpeed * TurnDirection();
 
-            Position += Velocity;
+            Rotation = Angle;
+            if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed) Position += Velocity;
             base.Update();
         }
 
