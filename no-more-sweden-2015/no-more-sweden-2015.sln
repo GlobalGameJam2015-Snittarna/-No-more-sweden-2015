@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "no-more-sweden-2015", "no-more-sweden-2015\no-more-sweden-2015\no-more-sweden-2015.csproj", "{D8DDCCD5-D40A-4072-8B64-33BA638D4220}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "no-more-sweden-2015Content", "no-more-sweden-2015\no-more-sweden-2015Content\no-more-sweden-2015Content.contentproj", "{571BFCDC-2700-467C-B2C9-5C50741E0A6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8DDCCD5-D40A-4072-8B64-33BA638D4220}.Debug|x86.ActiveCfg = Debug|x86
+		{D8DDCCD5-D40A-4072-8B64-33BA638D4220}.Debug|x86.Build.0 = Debug|x86
+		{D8DDCCD5-D40A-4072-8B64-33BA638D4220}.Release|x86.ActiveCfg = Release|x86
+		{D8DDCCD5-D40A-4072-8B64-33BA638D4220}.Release|x86.Build.0 = Release|x86
+		{571BFCDC-2700-467C-B2C9-5C50741E0A6E}.Debug|x86.ActiveCfg = Debug|x86
+		{571BFCDC-2700-467C-B2C9-5C50741E0A6E}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
