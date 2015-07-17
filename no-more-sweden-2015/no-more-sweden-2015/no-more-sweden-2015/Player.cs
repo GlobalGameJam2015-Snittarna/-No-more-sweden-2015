@@ -21,8 +21,8 @@ namespace no_more_sweden_2015
         {
             playerIndex = newPlayerIndex;
             Angle = -90;
-            Speed = 1;
-            turnSpeed = 5;
+            Speed = 3;
+            turnSpeed = 4;
             Scale = 1;
             Color = Color.White;
             Position = new Vector2(100, 100);
@@ -32,9 +32,9 @@ namespace no_more_sweden_2015
         public override void Update()
         {
             Angle += turnSpeed * TurnDirection();
-
+            Console.WriteLine(TurnDirection());
             Rotation = Angle;
-            if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed) Position += Velocity;
+            if (GamePad.GetState(playerIndex).Triggers.Right > 0.5) Position += Velocity * Speed;
             base.Update();
         }
 
@@ -44,9 +44,9 @@ namespace no_more_sweden_2015
             base.DrawSprite(spriteBatch);
         }
 
-        sbyte TurnDirection()
+        float TurnDirection()
         {
-            return (sbyte)Vector2.Normalize(GamePad.GetState(playerIndex).ThumbSticks.Left).X;
+            return Math.Sign((GamePad.GetState(playerIndex, GamePadDeadZone.Circular).ThumbSticks.Left).X);
         }
     }
 }
