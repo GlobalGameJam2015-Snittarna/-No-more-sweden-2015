@@ -38,11 +38,11 @@ namespace no_more_sweden_2015
 
         public virtual void DrawSprite(SpriteBatch spriteBatch) 
         {
-            Rectangle sourceRectangle;
+            Rectangle sourceRectangle = Frame;
 
             if(Frame == new Rectangle(0, 0, 0, 0))
             {
-
+                sourceRectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
             }
 
             spriteBatch.Draw(Sprite, Position, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color.White, Rotation, new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
