@@ -17,6 +17,6 @@ namespace no_more_sweden_2015
             return radian * 180 / (float)Math.PI;
         }
 
-        public const float G = 0.5f;
+        public const float G = 0.20f;
     }
 }

@@ -11,10 +11,13 @@ namespace no_more_sweden_2015
     abstract class GameObject
     {
         public Vector2 Position { get; set; }
+        
+
         public Vector2 Velocity 
         { 
             // God is dead
             get { return new Vector2((float)Math.Cos(Globals.DegreesToRadian(Angle)), (float)Math.Sin(Globals.DegreesToRadian(Angle))); } 
+            
         }
 
         public Rectangle Frame { get; set; }
