@@ -47,7 +47,7 @@ namespace no_more_sweden_2015
 
                         if (type == 6)
                         {
-                            
+                            p.InvicibleCounter = 255;
                         }
                     }
                 }
