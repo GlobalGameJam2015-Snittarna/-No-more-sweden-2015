@@ -16,7 +16,7 @@ namespace no_more_sweden_2015
     {
         PlayerIndex playerIndex;
         float turnSpeed;
-        public byte gunType;
+        public byte GunType { private get; set; }
 
         Vector2 velocity;
 
