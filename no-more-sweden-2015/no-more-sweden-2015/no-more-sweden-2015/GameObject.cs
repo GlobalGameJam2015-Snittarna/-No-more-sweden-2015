@@ -27,12 +27,16 @@ namespace no_more_sweden_2015
         public float Depth { get; set; }
         public float Angle { get; set; }
         public float Speed { get; set; }
+        public float Scale { get; set; }
+        public float Rotation { get; set; }
+
+        public Color Color { get; set; }
 
         public virtual void Update() { }
 
-        public virtual void Draw(SpriteBatch spriteBatch) 
-        { 
-            
+        public virtual void DrawSprite(SpriteBatch spriteBatch) 
+        {
+            spriteBatch.Draw(Sprite, Pos, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color.White, Rotation, new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
         }
     }
 }
