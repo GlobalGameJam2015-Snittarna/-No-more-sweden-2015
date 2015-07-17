@@ -6,8 +6,26 @@ using Microsoft.Xna.Framework;
 
 namespace no_more_sweden_2015
 {
-    class Projectile : GameObject
+    abstract class Projectile : GameObject
     {
-        
+        public byte Damege { get; set; }
+        public byte ExplosionSize { get; set; }
+
+        public bool explosive;
+
+        public void MoveFoward()
+        {
+            Position += Velocity * new Vector2(Speed, Speed);
+        }
+
+        public void Impact()
+        {
+            if (explosive)
+            {
+
+            }
+
+            GameObjectManager.Remove(this);
+        }
     }
 }
