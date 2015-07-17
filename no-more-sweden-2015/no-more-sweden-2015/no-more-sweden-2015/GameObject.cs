@@ -53,7 +53,11 @@ namespace no_more_sweden_2015
         public float Scale { get; set; }
         public float Rotation { get; set; }
 
+        public sbyte Health { get; set; }
+
         public Color Color { get; set; }
+
+        public bool solid;
 
         public virtual void Update() { }
 
@@ -66,7 +70,7 @@ namespace no_more_sweden_2015
                 sourceRectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
             }
 
-            spriteBatch.Draw(Sprite, Position, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color.White, Globals.DegreesToRadian(Rotation), new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
+            spriteBatch.Draw(Sprite, Position, new Rectangle(0, 0, Sprite.Width, Sprite.Height), Color, Globals.DegreesToRadian(Rotation), new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
         }
     }
 }

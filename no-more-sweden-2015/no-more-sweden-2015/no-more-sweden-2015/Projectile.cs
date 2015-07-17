@@ -13,9 +13,21 @@ namespace no_more_sweden_2015
 
         public bool explosive;
 
+        public void CollisionCheck()
+        {
+            foreach(GameObject g in GameObjectManager.gameObjects.Where(item => item.solid == true))
+            {
+                if (HitBox.Intersects(g.HitBox))
+                {
+                    g.Health -= (sbyte)Damege;
+                    Impact();
+                }
+            }
+        }
+
         public void MoveFoward()
         {
-            Position += Velocity * new Vector2(Speed, Speed);
+            Position += Velocity * Speed;
         }
 
         public void Deaccelerate(bool goReverse, float deaceelSpeed)
@@ -23,12 +35,12 @@ namespace no_more_sweden_2015
             if (goReverse || !goReverse && Speed > 0.1f)
                 Speed -= deaceelSpeed;
         }
-         
+        
         public void Impact()
         {
             if (explosive)
             {
-
+                
             }
 
             GameObjectManager.Remove(this);
