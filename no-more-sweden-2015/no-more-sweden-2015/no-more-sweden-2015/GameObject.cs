@@ -13,7 +13,8 @@ namespace no_more_sweden_2015
         public Vector2 Pos { get; set; }
         public Vector2 Velocity 
         { 
-            get { return new Vector2(((float)Math.Cos(Globals.DegreesToRadian(Angle)), (float)Math.Sin(Globals.DegreesToRadian(Angle))); } 
+            // God is dead
+            get { return new Vector2((float)Math.Cos(Globals.DegreesToRadian(Angle)), (float)Math.Sin(Globals.DegreesToRadian(Angle))); } 
         }
 
         public Texture2D Sprite { get; set; }
