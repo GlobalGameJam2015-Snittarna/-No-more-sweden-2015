@@ -10,7 +10,7 @@ namespace no_more_sweden_2015
 {
     class AssetManager
     {
-        public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap, powerUpBox, powerUps, flames;
+        public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap, powerUpBox, powerUps, flames, backgroundObject;
 
         public static void Load(ContentManager content)
         {
@@ -23,6 +23,7 @@ namespace no_more_sweden_2015
             powerUpBox = content.Load<Texture2D>("powerUpBox");
             powerUps = content.Load<Texture2D>("powerUps");
             flames = content.Load<Texture2D>("flames");
+            backgroundObject = content.Load<Texture2D>("backgroundObjects");
         }
     }
 }

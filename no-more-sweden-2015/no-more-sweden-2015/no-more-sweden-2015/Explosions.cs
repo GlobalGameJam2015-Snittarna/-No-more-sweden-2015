@@ -32,7 +32,7 @@ namespace no_more_sweden_2015
         {
             Animate();
 
-            if (Frame.X >= MaxFrame * Frame.Width + MaxFrame - 1)
+            if (AnimationDone)
             {
                 GameObjectManager.Remove(this);
             }

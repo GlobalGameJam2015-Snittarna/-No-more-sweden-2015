@@ -49,7 +49,7 @@ namespace no_more_sweden_2015
             }
             else
             {
-                GameObjectManager.Add(new Explosions(Position, Sprite.Width/24, false, Color.Yellow, random));
+                GameObjectManager.Add(new Explosions(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
 
             GameObjectManager.Remove(this);

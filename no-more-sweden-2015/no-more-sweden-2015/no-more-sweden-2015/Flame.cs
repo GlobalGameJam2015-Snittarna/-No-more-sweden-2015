@@ -34,6 +34,7 @@ namespace no_more_sweden_2015
         {
             MoveFoward();
             Deaccelerate(0.1f, -0.1f);
+            CollisionCheck();
 
             Animate();
 

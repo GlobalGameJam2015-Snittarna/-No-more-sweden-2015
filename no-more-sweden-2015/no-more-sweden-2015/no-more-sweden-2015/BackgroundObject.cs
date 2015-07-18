@@ -14,8 +14,9 @@ namespace no_more_sweden_2015
 
             Rotation = random2.Next(360);
 
+            Sprite = AssetManager.backgroundObject;
+            Scale = 1;
             Color = Color.White;
-
             Frame = new Rectangle(frame * 128 + frame, 0, 128, 128);
         }
     }
