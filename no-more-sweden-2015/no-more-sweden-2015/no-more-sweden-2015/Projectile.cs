@@ -16,6 +16,8 @@ namespace no_more_sweden_2015
 
         public PlayerIndex PlayerIndex { get; set; }
 
+        public short lifeTimeCount;
+
         public void CollisionCheck()
         {
             foreach(Player g in GameObjectManager.gameObjects.Where(item => item.solid == true))
@@ -26,6 +28,13 @@ namespace no_more_sweden_2015
                     Impact();
                 }
             }
+        }
+
+        public void Expire(short maxLifeTimeCount)
+        {
+            lifeTimeCount += 1;
+
+            if (lifeTimeCount >= maxLifeTimeCount) GameObjectManager.Remove(this);
         }
 
         public void MoveFoward()
