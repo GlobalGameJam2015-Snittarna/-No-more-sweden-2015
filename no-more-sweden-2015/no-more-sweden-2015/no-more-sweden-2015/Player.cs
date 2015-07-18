@@ -69,9 +69,17 @@ namespace no_more_sweden_2015
             cG = currentColor.G / 30;
             cB = currentColor.B / 30;
 
-            GunType = 4;
+            for (int i = 0; i < Globals.playersColors.Count(); i++)
+            {
+                Console.WriteLine(Globals.playersColors[i]);
+                if (Globals.playersColors[i] == new Color(0, 0, 0, 0))
+                {
+                    Globals.playersColors[i] = Color;
+                }
+            }
 
-           // velocity.Y = -8;
+            GunType = 0;
+            velocity.Y = -8;
         }
 
         public override void Update()

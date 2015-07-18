@@ -49,6 +49,8 @@ namespace no_more_sweden_2015
             foreach (PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
                 if (GamePad.GetState(playerIndex).IsConnected) Globals.numberOfPlayers++;
 
+            Globals.playersColors = new Color[Globals.numberOfPlayers];
+
             int slice = 640 / (Globals.numberOfPlayers + 1);
 
             for (int i = 1; i <= Globals.numberOfPlayers; i++)
