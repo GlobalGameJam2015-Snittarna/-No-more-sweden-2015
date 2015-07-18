@@ -54,7 +54,7 @@ namespace no_more_sweden_2015
 
             mid /= count;
 
-            Pos = mid;
+            Pos = new Vector2(MathHelper.Lerp(Pos.X, mid.X, 0.1f), MathHelper.Lerp(Pos.Y, mid.Y, 0.1f));
         }
 
         public void Update()
@@ -82,7 +82,7 @@ namespace no_more_sweden_2015
 
         public float CalculateZoom(float x)
         {
-            return 1.5f - (0.001f * x);
+            return 1.5f - (0.0015f * x);
         }
 
         public Matrix get_transformation(GraphicsDevice graphicsDevice)
