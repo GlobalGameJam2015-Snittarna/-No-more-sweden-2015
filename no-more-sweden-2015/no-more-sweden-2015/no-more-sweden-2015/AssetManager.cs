@@ -10,11 +10,7 @@ namespace no_more_sweden_2015
 {
     class AssetManager
     {
-<<<<<<< HEAD
-        public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap, powerUpBox, powerUps;
-=======
-        public static Texture2D genericProjectile, explosion, playerBody, playerWing, powerUpBox, powerUps, flames;
->>>>>>> origin/master
+        public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap, powerUpBox, powerUps, flames;
 
         public static void Load(ContentManager content)
         {
