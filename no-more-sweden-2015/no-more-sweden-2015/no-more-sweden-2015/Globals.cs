@@ -36,7 +36,7 @@ namespace no_more_sweden_2015
 
         public static int numberOfPlayers = 0;
 
-        public const float G = 0.16f;
+        public const float G = 0;//.16f;
 
         public bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
         {

@@ -23,11 +23,20 @@ namespace no_more_sweden_2015
         public int fireRate = 16;
         public int fireTimer;
 
+        public int currentMaxAmmo;
+        public int currentAmmo;
+
+        int cR;
+        int cG;
+        int cB;
+
         int respawnTimer;
 
         Vector2 velocity;
 
         Random rnd = new Random();
+
+        Color currentColor;
 
         public enum State
         {
@@ -50,14 +59,19 @@ namespace no_more_sweden_2015
             Sprite = AssetManager.playerBody;
             fireTimer = fireRate;
             Color = Color.CadetBlue;
-            Health = 15;
+            Health = 30;
             Depth = 1;
 
-            Color = new Color(rnd.Next(100, 255), rnd.Next(100, 255), rnd.Next(100, 255));
+            currentColor = new Color(rnd.Next(100, 255), rnd.Next(100, 255), rnd.Next(100, 255));
+            Color = currentColor;
 
-            GunType = 0;
+            cR = (255 - currentColor.R) / 30;
+            cG = currentColor.G / 30;
+            cB = currentColor.B / 30;
 
-            velocity.Y = -8;
+            GunType = 4;
+
+           // velocity.Y = -8;
         }
 
         public override void Update()
@@ -97,6 +111,9 @@ namespace no_more_sweden_2015
                         fireTimer = 0;
                     }
 
+                    Color = new Color(currentColor.R + cR * (30 - Health), cG * Health, cB * Health);
+
+
                     if (Health <= 0) currentState = State.dying;
 
                     break;
@@ -121,10 +138,13 @@ namespace no_more_sweden_2015
                     if (respawnTimer == 60 * 4)
                     {
                         Position = Game1.camera.Pos - Vector2.UnitY * 500;
-                        Health = 15;
+                        Health = 30;
                         currentState = State.living;
                         Angle = 90;
                         respawnTimer = 0;
+                        GunType = 0;
+                        currentAmmo = 0;
+                        Color = currentColor;
                     }
                     break;
             }
@@ -141,33 +161,45 @@ namespace no_more_sweden_2015
 
         void Shoot()
         {
+            currentAmmo++;
+
             switch (GunType)
             {
                 case 0: // simple shot;
                     fireRate = 16;
-                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 10, Angle, Speed * 1.5f, playerIndex));
                     break;
                 case 1: // reverse shot;
+                    currentMaxAmmo = 50;
                     fireRate = 16;
-                    GameObjectManager.Add(new ReverseShot(Position + Velocity * 20, 5, Angle, Speed * 2, playerIndex));
+                    GameObjectManager.Add(new ReverseShot(Position + Velocity * 20, 10, Angle, Speed * 2, playerIndex));
                     break;
                 case 2: // flame shot;
                     fireRate = 1;
-                    GameObjectManager.Add(new Flame(Position + Velocity * 20, 5, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
+                    currentMaxAmmo = 200;
+                    GameObjectManager.Add(new Flame(Position + Velocity * 20, 1, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
                     break;
                 case 3: // Homing shot;
                     fireRate = 16;
+                    currentMaxAmmo = 10;
                     GameObjectManager.Add(new Rocket(Position + Velocity * 20, 5, Angle, Speed * 1.5f, 0.1f, playerIndex));
                     break;
                 case 4: // spread shot;
                     fireRate = 32;
+                    currentMaxAmmo = 20;
                     for (int i = -2; i < 3; i++)
                         GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + 5 * i, Speed * 1.5f, playerIndex));
                     break;
                 case 5: // machine shot;
                     fireRate = 4;
-                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + rnd.Next(-2,3), Speed * 1.5f, playerIndex));
+                    currentMaxAmmo = 400;
+                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 2, Angle + rnd.Next(-2, 3), Speed * 1.5f, playerIndex));
                     break;
+            }
+
+            if (currentAmmo == currentMaxAmmo)
+            {
+                GunType = 0;
             }
         }
 
