@@ -18,12 +18,14 @@ namespace no_more_sweden_2015
         float turnSpeed;
         public byte GunType { private get; set; }
         public byte InvicibleCounter { private get; set; }
+        public int Score { get; private set; }
 
         int fireRate = 16;
         int fireTimer;
 
+        int respawnTimer;
+
         Vector2 velocity;
-        bool isDead = false;
 
         Random rnd = new Random();
 
@@ -85,7 +87,7 @@ namespace no_more_sweden_2015
 
                     fireTimer++;
 
-                    if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate && !isDead)
+                    if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate)
                     {
                         GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
                         fireTimer = 0;
@@ -110,7 +112,16 @@ namespace no_more_sweden_2015
                     break;
                 case State.dead:
                     velocity = Vector2.Zero;
+                    respawnTimer++;
 
+                    if (respawnTimer == 60 * 4)
+                    {
+                        Position = Game1.camera.Pos - Vector2.UnitY * 500;
+                        Health = 15;
+                        currentState = State.living;
+                        Angle = 90;
+                        respawnTimer = 0;
+                    }
                     break;
             }
             if (InvicibleCounter > 0)
@@ -120,8 +131,6 @@ namespace no_more_sweden_2015
             }
             else
                 solid = true;
-
-            if (Health == 0) isDead = true;
 
             base.Update();
         }

@@ -21,7 +21,7 @@ namespace no_more_sweden_2015
         public float Zoom
         {
             get { return _zoom; }
-            set { _zoom = value; if (_zoom < 0.5f) _zoom = 0.5f; if (_zoom > 1.5f) _zoom = 1.5f; } // Negative zoom will flip image
+            set { _zoom = value; if (_zoom < 0.4f) _zoom = 0.4f; if (_zoom > 1.5f) _zoom = 1.5f; } // Negative zoom will flip image
         }
 
         // Auxiliary function to move the camera
