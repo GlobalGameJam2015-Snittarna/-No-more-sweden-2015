@@ -11,6 +11,8 @@ namespace no_more_sweden_2015
     {
         byte type;
 
+        float cosCount;
+
         public PowerUp(Vector2 position2, byte type2)
         {
             Position = position2;
@@ -29,6 +31,10 @@ namespace no_more_sweden_2015
         public override void Update()
         {
             Position += Velocity * Speed;
+
+            Rotation = (float)Math.Cos(cosCount) * 10;
+
+            cosCount += 0.1f;
 
             foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
             {
@@ -51,6 +57,8 @@ namespace no_more_sweden_2015
                             p.InvicibleCounter = 255;
                         }
                     }
+
+                    GameObjectManager.Remove(this);
                 }
             }
 
@@ -60,7 +68,8 @@ namespace no_more_sweden_2015
         public override void DrawSprite(SpriteBatch spriteBatch)
         {
             base.DrawSprite(spriteBatch);
-            spriteBatch.Draw(AssetManager.powerUps, Position, new Rectangle(16 * type + type, 0, 16, 16), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, Depth + 0.01f);
+            spriteBatch.Draw(AssetManager.powerUps, Position + new Vector2(0, 0), new Rectangle(144, 0, 16, 16), Color.White, Globals.DegreesToRadian(Rotation), new Vector2(8, 8), 1, SpriteEffects.None, Depth + 0.001f);
+            spriteBatch.Draw(AssetManager.powerUps, Position + new Vector2(0, 0), new Rectangle(16 * type + type, 0, 16, 16), Color.White, Globals.DegreesToRadian(Rotation), new Vector2(8, 8), 1, SpriteEffects.None, Depth + 0.01f);
         }
     }
 }
