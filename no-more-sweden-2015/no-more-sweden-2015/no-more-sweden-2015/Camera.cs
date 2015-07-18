@@ -57,7 +57,12 @@ namespace no_more_sweden_2015
             Pos = mid;
         }
 
-
+        public void Update()
+        {
+            MoveToMid();
+            CalculateLongest();
+            Pos = new Vector2(Pos.X, MathHelper.Clamp(Pos.Y, -2000, -148));
+        }
 
         public void CalculateLongest()
         {

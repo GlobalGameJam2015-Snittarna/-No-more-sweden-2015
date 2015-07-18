@@ -89,8 +89,7 @@ namespace no_more_sweden_2015
             powerUpSpawner.Update();
 
             GameObjectManager.Update();
-            camera.MoveToMid();
-            camera.CalculateLongest();
+            camera.Update();
 
             base.Update(gameTime);
         }
