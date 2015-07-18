@@ -12,7 +12,11 @@ namespace no_more_sweden_2015
         {
             Position = position2;
 
-            Rotation = random2.Next(360);
+            if (frame < 3)
+                Rotation = random2.Next(360);
+
+            if (frame > 4)
+                GameObjectManager.Remove(this);
 
             Sprite = AssetManager.backgroundObject;
             Scale = 1;

@@ -56,9 +56,14 @@ namespace no_more_sweden_2015
 
             Random random = new Random();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 500; i++)
             {
-                GameObjectManager.Add(new BackgroundObject(new Vector2(random.Next(-3200, 3200), random.Next(-1000, -100)), (byte)random.Next(3), random));
+                GameObjectManager.Add(new BackgroundObject(new Vector2(random.Next(-9200, 9200), random.Next(-1000, -100)), (byte)random.Next(3), random));
+            }
+
+            for (int i = -100; i < 100; i++)
+            {
+                GameObjectManager.Add(new BackgroundObject(new Vector2(i*128+6, -64), (byte)random.Next(3, 7), random));
             }
 
             GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
