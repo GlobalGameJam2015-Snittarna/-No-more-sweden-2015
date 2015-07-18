@@ -18,6 +18,12 @@ namespace no_more_sweden_2015
 
         public short lifeTimeCount;
 
+        public override void Update()
+        {
+            if (Position.Y >= 0) Impact();
+            base.Update();
+        }
+
         public void CollisionCheck()
         {
             foreach(Player g in GameObjectManager.gameObjects.Where(item => item.solid == true))

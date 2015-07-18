@@ -26,7 +26,17 @@ namespace no_more_sweden_2015
 
         public Rectangle HitBox
         {
-            get { return new Rectangle((int)Position.X - Sprite.Width / 2, (int)Position.Y - Sprite.Height / 2, Sprite.Width * (int)Scale, Sprite.Height * (int)Scale); }
+            get 
+            {
+                Point tmp = new Point(Frame.Width, Frame.Height);
+
+                if(Frame == new Rectangle(0, 0, 0, 0))
+                {
+                    tmp = new Point(Sprite.Width, Sprite.Height);
+                }
+
+                return new Rectangle((int)Position.X - tmp.X/ 2, (int)Position.Y - tmp.Y / 2, tmp.X * (int)Scale, tmp.Y * (int)Scale); 
+            }
         }
 
         public short MaxAnimationCount { get; set; }
