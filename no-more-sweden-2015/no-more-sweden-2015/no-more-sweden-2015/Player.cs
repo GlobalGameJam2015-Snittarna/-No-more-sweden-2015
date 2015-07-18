@@ -38,7 +38,7 @@ namespace no_more_sweden_2015
 
         public State currentState = State.living;
 
-        public Player(PlayerIndex newPlayerIndex, Vector2 newPosition)
+        public Player(PlayerIndex newPlayerIndex, Vector2 newPosition, Random rnd)
         {
             playerIndex = newPlayerIndex;
             Angle = -90;
@@ -53,6 +53,7 @@ namespace no_more_sweden_2015
             Health = 15;
             Depth = 1;
 
+            Color = new Color(rnd.Next(100, 255), rnd.Next(100, 255), rnd.Next(100, 255));
 
             GunType = 0;
 

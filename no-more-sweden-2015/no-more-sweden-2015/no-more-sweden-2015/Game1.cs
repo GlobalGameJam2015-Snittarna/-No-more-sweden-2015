@@ -40,6 +40,8 @@ namespace no_more_sweden_2015
 
         PowerUpSpawner powerUpSpawner = new PowerUpSpawner();
 
+        Random rnd = new Random();
+
         protected override void Initialize()
         {
             AssetManager.Load(Content);
@@ -51,7 +53,7 @@ namespace no_more_sweden_2015
 
             for (int i = 1; i <= Globals.numberOfPlayers; i++)
             {
-                GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, -100)));
+                GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, -100), rnd));
             }
 
             Random random = new Random();
