@@ -30,13 +30,21 @@ namespace no_more_sweden_2015
 
         public override void Update()
         {
+            Random random = new Random();
+
             Position += Velocity * Speed;
 
             Rotation = (float)Math.Cos(cosCount) * 10;
 
             cosCount += 0.1f;
 
-            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
+            if (Position.Y >= 0)
+            {
+                GameObjectManager.Remove(this);
+                GameObjectManager.Add(new Explosion(Position, 1, false, Color.OrangeRed, random));
+            }
+
+            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player && item.solid == true))                               
             {
                 if (HitBox.Intersects(p.HitBox))
                 {

@@ -60,11 +60,11 @@ namespace no_more_sweden_2015
 
             if (explosive)
             {
-                GameObjectManager.Add(new Explosions(Position, ExplosionSize, false, Color.Orange, random));
+                GameObjectManager.Add(new Explosion(Position, ExplosionSize, false, Color.Orange, random));
             }
             else
             {
-                GameObjectManager.Add(new Explosions(Position, 0.4f, false, Color.MediumVioletRed, random));
+                GameObjectManager.Add(new Explosion(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
 
             GameObjectManager.Remove(this);

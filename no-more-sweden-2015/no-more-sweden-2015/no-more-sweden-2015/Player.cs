@@ -82,7 +82,7 @@ namespace no_more_sweden_2015
                     if (Position.Y > 0)
                     {
                         Health = 0;
-                        GameObjectManager.Add(new Explosions(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                        GameObjectManager.Add(new Explosion(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
                     }
 
                     fireTimer++;
@@ -99,7 +99,7 @@ namespace no_more_sweden_2015
                 case State.dying:
 
                     velocity.Y += Globals.G;
-                    GameObjectManager.Add(new Explosions(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                    GameObjectManager.Add(new Explosion(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
                     Position += velocity;
 
                     Vector2 vel = Vector2.Normalize(velocity);

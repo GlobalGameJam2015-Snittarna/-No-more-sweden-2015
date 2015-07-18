@@ -6,11 +6,11 @@ using Microsoft.Xna.Framework;
 
 namespace no_more_sweden_2015
 {
-    class Explosions : GameObject
+    class Explosion : GameObject
     {
         bool dangerous;
 
-        public Explosions(Vector2 position2, float scale2, bool dagnerous2, Color color2, Random random2)
+        public Explosion(Vector2 position2, float scale2, bool dagnerous2, Color color2, Random random2)
         {
             Position = position2;
 

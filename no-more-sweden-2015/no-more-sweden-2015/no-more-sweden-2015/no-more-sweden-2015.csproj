@@ -118,6 +118,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Gui.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="PowerUpSpawner.cs" />

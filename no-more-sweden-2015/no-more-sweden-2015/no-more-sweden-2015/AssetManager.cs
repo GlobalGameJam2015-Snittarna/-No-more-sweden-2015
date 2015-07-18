@@ -13,6 +13,8 @@ namespace no_more_sweden_2015
         public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap,
             powerUpBox, powerUps, flames, backgroundObject, rocket, ground;
 
+        public static SpriteFont font;
+
         public static void Load(ContentManager content)
         {
             genericProjectile = content.Load<Texture2D>("genericProjectile");
@@ -27,6 +29,8 @@ namespace no_more_sweden_2015
             backgroundObject = content.Load<Texture2D>("backgroundObjects");
             rocket = content.Load<Texture2D>("rocket");
             ground = content.Load<Texture2D>("ground");
+
+            font = content.Load<SpriteFont>("bigFont");
         }
     }
 }
