@@ -82,6 +82,10 @@ namespace no_more_sweden_2015
         {
             spriteBatch.Draw(AssetManager.playerWing, Position + Globals.VectorFromAngle(Angle - 90) * 5, null, Color.White, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, AssetManager.playerWing.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, 0);
             spriteBatch.Draw(AssetManager.playerWing, Position - Globals.VectorFromAngle(Angle - 90) * 5, null, Color.White, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, 0);
+
+            spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color.White, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, 0);
+            spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color.White, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, 0);
+            
             base.DrawSprite(spriteBatch);
         }
 
