@@ -91,6 +91,7 @@ namespace no_more_sweden_2015
             powerUpSpawner.Update();
 
             GameObjectManager.Update();
+            gui.Update();
             camera.Update();
 
             base.Update(gameTime);
@@ -109,6 +110,7 @@ namespace no_more_sweden_2015
             {
                 g.DrawSprite(spriteBatch);
             }
+            spriteBatch.Draw(AssetManager.dirt, new Rectangle((int)(camera.Pos.X - 600) - 400, 16, 2000, 800), new Rectangle(0, 0, 600, 800), Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.End();
             spriteBatch.Begin();
             gui.Draw(spriteBatch);
