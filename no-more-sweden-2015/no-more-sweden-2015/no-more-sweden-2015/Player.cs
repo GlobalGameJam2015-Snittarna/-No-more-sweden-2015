@@ -29,14 +29,14 @@ namespace no_more_sweden_2015
 
         Random rnd = new Random();
 
-        enum State
+        public enum State
         {
             living,
             dying,
             dead
         }
 
-        State currentState = State.living;
+        public State currentState = State.living;
 
         public Player(PlayerIndex newPlayerIndex, Vector2 newPosition)
         {
