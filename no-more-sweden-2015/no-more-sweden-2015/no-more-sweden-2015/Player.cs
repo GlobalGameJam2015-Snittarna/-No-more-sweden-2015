@@ -75,6 +75,7 @@ namespace no_more_sweden_2015
                 if (Globals.playersColors[i] == new Color(0, 0, 0, 0))
                 {
                     Globals.playersColors[i] = Color;
+                    break;
                 }
             }
 
