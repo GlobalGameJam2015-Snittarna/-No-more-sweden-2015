@@ -51,7 +51,7 @@ namespace no_more_sweden_2015
                     if (type <= 4)
                     {
                         p.GunType = (byte)(type+1);
-                        p.fireTime = 9999;
+                        p.fireTimer = 9999;
                     }
                     else
                     {
