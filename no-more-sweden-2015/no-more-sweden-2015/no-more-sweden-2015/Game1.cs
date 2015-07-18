@@ -19,7 +19,7 @@ namespace no_more_sweden_2015
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Camera camera = new Camera();
+        internal static Camera camera = new Camera();
 
         PlayerIndex[] indexes = new PlayerIndex[]{
             PlayerIndex.One,
@@ -35,6 +35,8 @@ namespace no_more_sweden_2015
             graphics.PreferredBackBufferHeight = 480;
             Content.RootDirectory = "Content";
         }
+
+        PowerUpSpawner powerUpSpawner = new PowerUpSpawner();
 
         protected override void Initialize()
         {
@@ -84,6 +86,8 @@ namespace no_more_sweden_2015
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            powerUpSpawner.Update();
+
             GameObjectManager.Update();
             camera.MoveToMid();
             camera.CalculateLongest();
@@ -95,15 +99,12 @@ namespace no_more_sweden_2015
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-<<<<<<< HEAD
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, null, null, camera.get_transformation(GraphicsDevice));
-=======
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,SamplerState.PointClamp, null, null, null, camera.get_transformation(GraphicsDevice));
             for (int i = -1000; i < 1000; i++)
             {
                 spriteBatch.Draw(AssetManager.ground, new Vector2(i * 32, 0), new Rectangle(0, 0, 32, 16), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.2f); 
             }
->>>>>>> origin/master
+
             foreach (GameObject g in GameObjectManager.gameObjects)
             {
                 g.DrawSprite(spriteBatch);
