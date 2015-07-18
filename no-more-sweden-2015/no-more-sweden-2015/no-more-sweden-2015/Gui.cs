@@ -46,6 +46,13 @@ namespace no_more_sweden_2015
 
                 string playerText = "PLAYER " + (i + 1) + ": " + Convert.ToInt32(displayScore[i]);
 
+                Color playerColor;
+
+                if (i < 2)
+                    spriteBatch.DrawString(AssetManager.font, playerText, new Vector2((i * 640) - (AssetManager.font.MeasureString(playerText).X) * Convert.ToInt32(pushOutFromScreen) - 1, 10 - 1), Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                else
+                    spriteBatch.DrawString(AssetManager.font, playerText, new Vector2((i * 300) - 600 - (AssetManager.font.MeasureString(playerText).X) * Convert.ToInt32(pushOutFromScreen) - 1, 450 - 1), Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+
                 if (i < 2)
                     spriteBatch.DrawString(AssetManager.font, playerText, new Vector2((i * 640) - (AssetManager.font.MeasureString(playerText).X) * Convert.ToInt32(pushOutFromScreen), 10), new Color(150 + i * 50, 150, 150));
                 else

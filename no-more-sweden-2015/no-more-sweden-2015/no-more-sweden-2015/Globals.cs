@@ -38,6 +38,8 @@ namespace no_more_sweden_2015
 
         public const float G = 0.16f;
 
+        public static Color[] playersColors;
+
         public void AddScore(PlayerIndex player, int score)
         {
             foreach (Player p in GameObjectManager.gameObjects.Where(O => O is Player))

@@ -47,6 +47,8 @@ namespace no_more_sweden_2015
             foreach (PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
                 if (GamePad.GetState(playerIndex).IsConnected) Globals.numberOfPlayers++;
 
+            Globals.playersColors = new Color[Globals.numberOfPlayers];
+
             int slice = 640 / (Globals.numberOfPlayers + 1);
 
             for (int i = 1; i <= Globals.numberOfPlayers; i++)
@@ -69,6 +71,14 @@ namespace no_more_sweden_2015
             GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
 
             gui = new Gui();
+
+            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
+            {
+                for (int i = 0; i < Globals.numberOfPlayers; i++ )
+                {
+                    if (Globals.playersColors[i] == null) Globals.playersColors[i] = p.Color;
+                }
+            }
 
             base.Initialize();
         }
