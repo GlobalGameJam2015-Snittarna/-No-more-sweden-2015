@@ -38,7 +38,6 @@ namespace no_more_sweden_2015
 
         public const float G = 0.16f;
 
-<<<<<<< HEAD
         public static Color[] playersColors;
 
         public void AddScore(PlayerIndex player, int score)
@@ -48,8 +47,6 @@ namespace no_more_sweden_2015
             
         }
 
-=======
->>>>>>> origin/master
         public bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
         {
             // Completely outside.

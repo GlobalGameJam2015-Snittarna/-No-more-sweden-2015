@@ -55,6 +55,15 @@ namespace no_more_sweden_2015
 
             Color = new Color(rnd.Next(100, 255), rnd.Next(100, 255), rnd.Next(100, 255));
 
+            for (int i = 0; i < Globals.playersColors.Count(); i++)
+            {
+                Console.WriteLine(Globals.playersColors[i]);
+                if (Globals.playersColors[i] == new Color(0, 0, 0, 0))
+                {
+                    Globals.playersColors[i] = Color;
+                }
+            }
+
             GunType = 0;
 
             velocity.Y = -8;

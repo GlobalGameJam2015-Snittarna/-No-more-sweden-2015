@@ -72,14 +72,6 @@ namespace no_more_sweden_2015
 
             gui = new Gui();
 
-            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
-            {
-                for (int i = 0; i < Globals.numberOfPlayers; i++ )
-                {
-                    if (Globals.playersColors[i] == null) Globals.playersColors[i] = p.Color;
-                }
-            }
-
             base.Initialize();
         }
 
