@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
+    <Compile Include="BackgroundObject.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Explosions.cs" />
     <Compile Include="Flame.cs" />
