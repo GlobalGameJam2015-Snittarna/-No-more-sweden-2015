@@ -38,13 +38,6 @@ namespace no_more_sweden_2015
 
         public const float G = 0.16f;
 
-        public void AddScore(PlayerIndex player, int score)
-        {
-            foreach (Player p in GameObjectManager.gameObjects.Where(O => O is Player))
-                p.Score += score;   
-            
-        }
-
         public bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
         {
             // Completely outside.

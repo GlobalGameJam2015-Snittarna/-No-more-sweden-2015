@@ -66,8 +66,6 @@ namespace no_more_sweden_2015
                 GameObjectManager.Add(new BackgroundObject(new Vector2(i*128+6, -64), (byte)random.Next(3, 7), random));
             }
 
-            GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
-
             gui = new Gui();
 
             base.Initialize();
@@ -93,6 +91,8 @@ namespace no_more_sweden_2015
             GameObjectManager.Update();
             gui.Update();
             camera.Update();
+
+            gui.Update();
 
             base.Update(gameTime);
         }
