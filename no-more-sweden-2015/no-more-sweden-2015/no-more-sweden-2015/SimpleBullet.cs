@@ -19,7 +19,7 @@ namespace no_more_sweden_2015
 
             Sprite = AssetManager.genericProjectile;
             Color = Color.Red;
-            Scale = 1;
+            Scale = 0.666666f;
 
             PlayerIndex = playerIndex2;
         }

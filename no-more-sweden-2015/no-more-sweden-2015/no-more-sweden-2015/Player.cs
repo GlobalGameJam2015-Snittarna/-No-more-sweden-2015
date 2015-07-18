@@ -38,7 +38,7 @@ namespace no_more_sweden_2015
 
         public State currentState = State.living;
 
-        public Player(PlayerIndex newPlayerIndex, Vector2 newPosition)
+        public Player(PlayerIndex newPlayerIndex, Vector2 newPosition, Random rnd)
         {
             playerIndex = newPlayerIndex;
             Angle = -90;
@@ -52,6 +52,10 @@ namespace no_more_sweden_2015
             Color = Color.CadetBlue;
             Health = 15;
             Depth = 1;
+
+            Color = new Color(rnd.Next(100, 255), rnd.Next(100, 255), rnd.Next(100, 255));
+
+            GunType = 0;
 
             velocity.Y = -8;
         }
@@ -151,20 +155,18 @@ namespace no_more_sweden_2015
                     fireRate = 1;
                     GameObjectManager.Add(new Flame(Position + Velocity * 20, 5, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
                     break;
-                case 3: // divebomb shot;
+                case 3: // Homing shot;
                     fireRate = 16;
                     GameObjectManager.Add(new Rocket(Position + Velocity * 20, 5, Angle, Speed * 1.5f, 0.1f, playerIndex));
                     break;
                 case 4: // spread shot;
                     fireRate = 32;
                     for (int i = -2; i < 3; i++)
-                    {
                         GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + 5 * i, Speed * 1.5f, playerIndex));
-                    }
                     break;
                 case 5: // machine shot;
                     fireRate = 4;
-                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + rnd.Next(-2,3), Speed * 1.5f, playerIndex));
                     break;
             }
         }

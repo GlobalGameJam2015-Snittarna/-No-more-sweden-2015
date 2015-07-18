@@ -18,6 +18,8 @@ namespace no_more_sweden_2015
 
         public short lifeTimeCount;
 
+        public int score;
+
         public override void Update()
         {
             if (Position.Y >= 0) Impact();
@@ -26,11 +28,13 @@ namespace no_more_sweden_2015
 
         public void CollisionCheck()
         {
-            foreach(Player g in GameObjectManager.gameObjects.Where(item => item.solid == true))
+            foreach(Player p in GameObjectManager.gameObjects.Where(item => item.solid == true))
             {
-                if (HitBox.Intersects(g.HitBox) && g.playerIndex != PlayerIndex)
+                if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
                 {
-                    g.Health -= (sbyte)Damege;
+                    p.Health -= (sbyte)Damege;
+                    if (p.Health <= 0) score *= 5;
+                    p.Score += score;
                     Impact();
                 }
             }
@@ -45,7 +49,9 @@ namespace no_more_sweden_2015
 
         public void MoveFoward()
         {
-            Position += Velocity * Speed;
+            Vector2 vel = Velocity * Speed;
+            Position += vel;
+            score += (int)vel.Length();
         }
 
         public void Deaccelerate(float deaceelSpeed, float limit)
@@ -66,6 +72,8 @@ namespace no_more_sweden_2015
             {
                 GameObjectManager.Add(new Explosion(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
+
+            
 
             GameObjectManager.Remove(this);
         }
