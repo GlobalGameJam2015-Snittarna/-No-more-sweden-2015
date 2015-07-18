@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace no_more_sweden_2015
 {
-    class SimpleBullet : Projectile
+    class ReverseShot : Projectile
     {
-        public SimpleBullet(Vector2 position2, byte damege2, float angle2, float speed2, PlayerIndex playerIndex2)
+        public ReverseShot(Vector2 position2, byte damege2, float angle2, float speed2, PlayerIndex playerIndex2)
         {
             Position = position2;
-            
+
             Speed = speed2;
             Angle = angle2;
 
@@ -26,10 +26,13 @@ namespace no_more_sweden_2015
 
         public override void Update()
         {
-            MoveFoward();
             CollisionCheck();
 
+            Deaccelerate(0.3f, -10);
+
             Expire(2000);
+
+            MoveFoward();
 
             base.Update();
         }

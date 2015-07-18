@@ -16,6 +16,14 @@ namespace no_more_sweden_2015
 
         public PlayerIndex PlayerIndex { get; set; }
 
+        public short lifeTimeCount;
+
+        public override void Update()
+        {
+            if (Position.Y >= 0) Impact();
+            base.Update();
+        }
+
         public void CollisionCheck()
         {
             foreach(Player g in GameObjectManager.gameObjects.Where(item => item.solid == true))
@@ -26,6 +34,13 @@ namespace no_more_sweden_2015
                     Impact();
                 }
             }
+        }
+
+        public void Expire(short maxLifeTimeCount)
+        {
+            lifeTimeCount += 1;
+
+            if (lifeTimeCount >= maxLifeTimeCount) GameObjectManager.Remove(this);
         }
 
         public void MoveFoward()
@@ -49,7 +64,7 @@ namespace no_more_sweden_2015
             }
             else
             {
-                GameObjectManager.Add(new Explosions(Position, Sprite.Width/24, false, Color.Yellow, random));
+                GameObjectManager.Add(new Explosions(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
 
             GameObjectManager.Remove(this);

@@ -51,7 +51,18 @@ namespace no_more_sweden_2015
             {
                 GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, graphics.PreferredBackBufferHeight - 100)));
             }
-            
+
+            Random random = new Random();
+
+            for (int i = 0; i < 500; i++)
+            {
+                GameObjectManager.Add(new BackgroundObject(new Vector2(random.Next(-9200, 9200), random.Next(-1000, -100)), (byte)random.Next(3), random));
+            }
+
+            for (int i = -100; i < 100; i++)
+            {
+                GameObjectManager.Add(new BackgroundObject(new Vector2(i*128+6, -64), (byte)random.Next(3, 7), random));
+            }
 
             GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
 
@@ -84,7 +95,15 @@ namespace no_more_sweden_2015
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+<<<<<<< HEAD
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, null, null, camera.get_transformation(GraphicsDevice));
+=======
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,SamplerState.PointClamp, null, null, null, camera.get_transformation(GraphicsDevice));
+            for (int i = -1000; i < 1000; i++)
+            {
+                spriteBatch.Draw(AssetManager.ground, new Vector2(i * 32, 0), new Rectangle(0, 0, 32, 16), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.2f); 
+            }
+>>>>>>> origin/master
             foreach (GameObject g in GameObjectManager.gameObjects)
             {
                 g.DrawSprite(spriteBatch);
