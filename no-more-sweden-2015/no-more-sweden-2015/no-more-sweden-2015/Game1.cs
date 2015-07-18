@@ -21,17 +21,39 @@ namespace no_more_sweden_2015
 
         Camera camera = new Camera();
 
+        PlayerIndex[] indexes = new PlayerIndex[]{
+            PlayerIndex.One,
+            PlayerIndex.Two,
+            PlayerIndex.Three,
+            PlayerIndex.Four
+        };
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
             Content.RootDirectory = "Content";
         }
+
         
+
         protected override void Initialize()
         {
             AssetManager.Load(Content);
-            GameObjectManager.Add(new Player(PlayerIndex.One, new Vector2(100, 100)));
+
+            int numberOfPlayers = 0;
+
+            foreach (PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
+                if (GamePad.GetState(playerIndex).IsConnected) numberOfPlayers++;
+
+            int slice = 640 / (numberOfPlayers + 1);
+
+            for (int i = 1; i <= numberOfPlayers; i++)
+            {
+                GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, graphics.PreferredBackBufferHeight - 100)));
+            }
+            
 
             GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
 

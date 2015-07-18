@@ -35,6 +35,8 @@ namespace no_more_sweden_2015
             Position = newPosition;
             Sprite = AssetManager.playerBody;
             fireTimer = fireRate;
+
+            velocity.Y = -8;
         }
 
         public override void Update()
