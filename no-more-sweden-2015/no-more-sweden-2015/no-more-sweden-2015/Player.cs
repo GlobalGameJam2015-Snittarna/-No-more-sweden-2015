@@ -145,10 +145,10 @@ namespace no_more_sweden_2015
                     break;
                 case 1: // reverse shot;
                     fireRate = 16;
-                    GameObjectManager.Add(new ReverseShot(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    GameObjectManager.Add(new ReverseShot(Position + Velocity * 20, 5, Angle, Speed * 2, playerIndex));
                     break;
                 case 2: // flame shot;
-                    fireRate = 4;
+                    fireRate = 1;
                     GameObjectManager.Add(new Flame(Position + Velocity * 20, 5, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
                     break;
                 case 3: // divebomb shot;
@@ -163,7 +163,7 @@ namespace no_more_sweden_2015
                     }
                     break;
                 case 5: // machine shot;
-                    fireRate = 80;
+                    fireRate = 4;
                     GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
                     break;
             }
