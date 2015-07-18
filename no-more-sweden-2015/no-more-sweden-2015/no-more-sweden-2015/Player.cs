@@ -16,7 +16,7 @@ namespace no_more_sweden_2015
     {
         public PlayerIndex playerIndex;
         float turnSpeed;
-        public byte GunType { private get; set; }
+        public byte GunType { get; set; }
         public byte InvicibleCounter { private get; set; }
         public int Score { get; set; }
 
@@ -85,7 +85,6 @@ namespace no_more_sweden_2015
 
         public override void Update()
         {
-            solid = false;
             switch (currentState)
             {
                 case State.living:
@@ -222,7 +221,7 @@ namespace no_more_sweden_2015
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
 
-                if (solid)
+                if (!solid)
                 {
                     spriteBatch.Draw(AssetManager.shield, Position, new Rectangle(0, 0, 48, 48), Color.White, 0, new Vector2(24, 24), 1, SpriteEffects.None, Depth + 0.01f);
                 }
