@@ -34,6 +34,7 @@ namespace no_more_sweden_2015
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
             Content.RootDirectory = "Content";
+            graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -49,7 +50,7 @@ namespace no_more_sweden_2015
 
             for (int i = 1; i <= numberOfPlayers; i++)
             {
-                GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, graphics.PreferredBackBufferHeight - 100)));
+                GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, -100)));
             }
 
             Random random = new Random();
@@ -95,15 +96,11 @@ namespace no_more_sweden_2015
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-<<<<<<< HEAD
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, null, null, camera.get_transformation(GraphicsDevice));
-=======
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,SamplerState.PointClamp, null, null, null, camera.get_transformation(GraphicsDevice));
             for (int i = -1000; i < 1000; i++)
             {
                 spriteBatch.Draw(AssetManager.ground, new Vector2(i * 32, 0), new Rectangle(0, 0, 32, 16), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.2f); 
             }
->>>>>>> origin/master
             foreach (GameObject g in GameObjectManager.gameObjects)
             {
                 g.DrawSprite(spriteBatch);

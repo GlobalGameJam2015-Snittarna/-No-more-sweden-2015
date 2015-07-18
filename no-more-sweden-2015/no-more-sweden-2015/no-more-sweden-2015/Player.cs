@@ -17,14 +17,24 @@ namespace no_more_sweden_2015
         public PlayerIndex playerIndex;
         float turnSpeed;
         public byte GunType { private get; set; }
-        public byte InvicibleCounter{ private get; set; }
+        public byte InvicibleCounter { private get; set; }
 
         int fireRate = 16;
         int fireTimer;
 
         Vector2 velocity;
+        bool isDead = false;
 
+        Random rnd = new Random();
 
+        enum State
+        {
+            living,
+            dying,
+            dead
+        }
+
+        State currentState = State.living;
 
         public Player(PlayerIndex newPlayerIndex, Vector2 newPosition)
         {
@@ -38,6 +48,7 @@ namespace no_more_sweden_2015
             Sprite = AssetManager.playerBody;
             fireTimer = fireRate;
             Color = Color.CadetBlue;
+            Health = 15;
             Depth = 1;
 
             velocity.Y = -8;
@@ -45,32 +56,63 @@ namespace no_more_sweden_2015
 
         public override void Update()
         {
-            Angle += turnSpeed * TurnDirection();
-            Console.WriteLine(TurnDirection());
-            Rotation = Angle;
 
-            if (GamePad.GetState(playerIndex).Triggers.Right > 0.5)
+            switch (currentState)
             {
-                velocity.X = MathHelper.Lerp(velocity.X, Velocity.X * Speed, 0.1f);
-                velocity.Y = MathHelper.Lerp(velocity.Y, Velocity.Y * Speed, 0.1f);
-                turnSpeed = 4;
-            }
-            else
-            {
-                velocity.Y += Globals.G;
-                turnSpeed = 6;
-            }
+                case State.living:
 
-            if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate)
-            {
-                GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
-                fireTimer = 0;
+                    if (GamePad.GetState(playerIndex).Triggers.Right > 0.5)
+                    {
+                        velocity.X = MathHelper.Lerp(velocity.X, Velocity.X * Speed, 0.1f);
+                        velocity.Y = MathHelper.Lerp(velocity.Y, Velocity.Y * Speed, 0.1f);
+                        turnSpeed = 4;
+                    }
+                    else
+                    {
+                        velocity.Y += Globals.G;
+                        turnSpeed = 6;
+                    }
+
+                    Angle += turnSpeed * TurnDirection();
+                    Rotation = Angle;
+                    Position += velocity;
+
+                    if (Position.Y > 0)
+                    {
+                        Health = 0;
+                        GameObjectManager.Add(new Explosions(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                    }
+
+                    fireTimer++;
+
+                    if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate && !isDead)
+                    {
+                        GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                        fireTimer = 0;
+                    }
+
+                    if (Health <= 0) currentState = State.dying;
+
+                    break;
+                case State.dying:
+
+                    velocity.Y += Globals.G;
+                    GameObjectManager.Add(new Explosions(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                    Position += velocity;
+
+                    Vector2 vel = Vector2.Normalize(velocity);
+
+                    Angle = Globals.RadianToDegree((float)Math.Atan2(vel.Y, vel.X));
+                    Rotation = Angle;
+
+                    if (Position.Y >= 0) currentState = State.dead;
+
+                    break;
+                case State.dead:
+                    velocity = Vector2.Zero;
+
+                    break;
             }
-
-            fireTimer++;
-
-            Position += velocity;
-            
             if (InvicibleCounter > 0)
             {
                 InvicibleCounter--;
@@ -78,19 +120,24 @@ namespace no_more_sweden_2015
             }
             else
                 solid = true;
-            
+
+            if (Health == 0) isDead = true;
+
             base.Update();
         }
 
         public override void DrawSprite(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.playerWing, Position + Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, AssetManager.playerWing.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, 0);
-            spriteBatch.Draw(AssetManager.playerWing, Position - Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, 0);
+            if (currentState != State.dead)
+            {
+                spriteBatch.Draw(AssetManager.playerWing, Position + Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, AssetManager.playerWing.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
+                spriteBatch.Draw(AssetManager.playerWing, Position - Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
 
-            spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, 0);
-            spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, 0);
-            
-            base.DrawSprite(spriteBatch);
+                spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
+                spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
+
+                base.DrawSprite(spriteBatch);
+            }
         }
 
         float TurnDirection()
