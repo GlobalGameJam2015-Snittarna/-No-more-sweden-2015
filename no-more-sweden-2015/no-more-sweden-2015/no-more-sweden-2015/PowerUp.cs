@@ -19,6 +19,7 @@ namespace no_more_sweden_2015
 
             Color = Color.White;
             Scale = 1;
+            Sprite = AssetManager.powerUpBox;
 
             Speed = 3;
 
@@ -59,6 +60,7 @@ namespace no_more_sweden_2015
         public override void DrawSprite(SpriteBatch spriteBatch)
         {
             base.DrawSprite(spriteBatch);
+            spriteBatch.Draw(AssetManager.powerUps, Position, new Rectangle(16 * type + type, 0, 16, 16), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, Depth + 0.01f);
         }
     }
 }

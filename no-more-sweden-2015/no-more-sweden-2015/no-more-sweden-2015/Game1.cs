@@ -33,6 +33,8 @@ namespace no_more_sweden_2015
             AssetManager.Load(Content);
             GameObjectManager.Add(new Player(PlayerIndex.One, new Vector2(100, 100)));
 
+            GameObjectManager.Add(new PowerUp(new Vector2(100, 0), 1));
+
             base.Initialize();
         }
 
