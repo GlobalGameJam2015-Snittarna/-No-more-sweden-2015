@@ -20,8 +20,8 @@ namespace no_more_sweden_2015
         public byte InvicibleCounter { private get; set; }
         public int Score { get; private set; }
 
-        int fireRate = 16;
-        int fireTimer;
+        public int fireRate = 16;
+        public int fireTimer;
 
         int respawnTimer;
 
@@ -89,7 +89,7 @@ namespace no_more_sweden_2015
 
                     if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate)
                     {
-                        GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                        Shoot();
                         fireTimer = 0;
                     }
 
@@ -133,6 +133,40 @@ namespace no_more_sweden_2015
                 solid = true;
 
             base.Update();
+        }
+
+        void Shoot()
+        {
+            switch (GunType)
+            {
+                case 0: // simple shot;
+                    fireRate = 16;
+                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    break;
+                case 1: // reverse shot;
+                    fireRate = 16;
+                    GameObjectManager.Add(new ReverseShot(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    break;
+                case 2: // flame shot;
+                    fireRate = 4;
+                    GameObjectManager.Add(new Flame(Position + Velocity * 20, 5, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
+                    break;
+                case 3: // divebomb shot;
+                    fireRate = 16;
+                    GameObjectManager.Add(new Rocket(Position + Velocity * 20, 5, Angle, Speed * 1.5f, 0.1f, playerIndex));
+                    break;
+                case 4: // spread shot;
+                    fireRate = 32;
+                    for (int i = -2; i < 3; i++)
+                    {
+                        GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + 5 * i, Speed * 1.5f, playerIndex));
+                    }
+                    break;
+                case 5: // machine shot;
+                    fireRate = 80;
+                    GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle, Speed * 1.5f, playerIndex));
+                    break;
+            }
         }
 
         public override void DrawSprite(SpriteBatch spriteBatch)
