@@ -18,7 +18,7 @@ namespace no_more_sweden_2015
         float turnSpeed;
         public byte GunType { private get; set; }
         public byte InvicibleCounter { private get; set; }
-        public int Score { get; private set; }
+        public int Score { get; set; }
 
         public int fireRate = 16;
         public int fireTimer;
