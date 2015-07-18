@@ -33,11 +33,16 @@ namespace no_more_sweden_2015
         public short AnimationCount { get; set; }
         public short MaxFrame { get; set; }
 
+        public bool AnimationDone
+        {
+            get { return Frame.X >= MaxFrame * Frame.Width + MaxFrame - 1; }
+        }
+
         public void Animate()
         {
             AnimationCount += 1;
 
-            if (Frame.X >= MaxFrame * Frame.Width + MaxFrame-1)
+            if (AnimationDone)
             {
                 Frame = new Rectangle(0, Frame.Y, Frame.Width, Frame.Height);
             }
@@ -77,7 +82,9 @@ namespace no_more_sweden_2015
                 sourceRectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
             }
 
-            spriteBatch.Draw(Sprite, Position, sourceRectangle, Color, Globals.DegreesToRadian(Rotation), new Vector2(Sprite.Width / 2, Sprite.Height / 2), Scale, SpriteEffects.None, Depth);
+            Vector2 orgin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
+
+            spriteBatch.Draw(Sprite, Position, sourceRectangle, Color, Globals.DegreesToRadian(Rotation), orgin, Scale, SpriteEffects.None, Depth);
         }
     }
 }

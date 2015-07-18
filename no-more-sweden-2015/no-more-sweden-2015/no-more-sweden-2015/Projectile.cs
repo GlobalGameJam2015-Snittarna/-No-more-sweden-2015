@@ -33,9 +33,9 @@ namespace no_more_sweden_2015
             Position += Velocity * Speed;
         }
 
-        public void Deaccelerate(bool goReverse, float deaceelSpeed)
+        public void Deaccelerate(float deaceelSpeed, float limit)
         {
-            if (goReverse || !goReverse && Speed > 0.1f)
+            if (Speed > limit)
                 Speed -= deaceelSpeed;
         }
         
