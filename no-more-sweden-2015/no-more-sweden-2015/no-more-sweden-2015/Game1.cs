@@ -43,14 +43,12 @@ namespace no_more_sweden_2015
         {
             AssetManager.Load(Content);
 
-            int numberOfPlayers = 0;
-
             foreach (PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
-                if (GamePad.GetState(playerIndex).IsConnected) numberOfPlayers++;
+                if (GamePad.GetState(playerIndex).IsConnected) Globals.numberOfPlayers++;
 
-            int slice = 640 / (numberOfPlayers + 1);
+            int slice = 640 / (Globals.numberOfPlayers + 1);
 
-            for (int i = 1; i <= numberOfPlayers; i++)
+            for (int i = 1; i <= Globals.numberOfPlayers; i++)
             {
                 GameObjectManager.Add(new Player(indexes[i - 1], new Vector2(slice * i, -100)));
             }

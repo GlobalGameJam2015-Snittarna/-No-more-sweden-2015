@@ -44,13 +44,14 @@ namespace no_more_sweden_2015
                 GameObjectManager.Add(new Explosion(Position, 1, false, Color.OrangeRed, random));
             }
 
-            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player && item.solid == true))                               
+            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))                               
             {
-                if (HitBox.Intersects(p.HitBox))
+                if (p.currentState == Player.State.living && HitBox.Intersects(p.HitBox))
                 {
                     if (type <= 4)
                     {
-                        p.GunType = type;
+                        p.GunType = (byte)(type+1);
+                        p.fireTime = 9999;
                     }
                     else
                     {

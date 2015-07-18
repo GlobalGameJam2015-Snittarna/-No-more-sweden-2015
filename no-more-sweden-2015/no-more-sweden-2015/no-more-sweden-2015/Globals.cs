@@ -34,6 +34,8 @@ namespace no_more_sweden_2015
             return s + t * (e - s);
         }
 
+        public static int numberOfPlayers = 0;
+
         public const float G = 0.16f; 
     }
 }
