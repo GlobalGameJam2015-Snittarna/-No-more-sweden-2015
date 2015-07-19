@@ -72,7 +72,7 @@ namespace no_more_sweden_2015
 
             for (int i = 0; i < 500; i++)
             {
-                GameObjectManager.Add(new BackgroundObject(new Vector2(random.Next(-9200, 9200), random.Next(-1000, -100)), (byte)random.Next(3), random));
+                GameObjectManager.Add(new BackgroundObject(new Vector2(random.Next(-19200, 19200), random.Next(-1000, -100)), (byte)random.Next(3), random));
             }
 
             for (int i = -100; i < 100; i++)
