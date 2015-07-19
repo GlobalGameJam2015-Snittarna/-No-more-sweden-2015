@@ -107,9 +107,7 @@ namespace no_more_sweden_2015
             {
                 GameObjectManager.Add(new Explosion(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
-
-
-
+            if (!isLazer) AssetManager.hit.Play();
             GameObjectManager.Remove(this);
         }
     }

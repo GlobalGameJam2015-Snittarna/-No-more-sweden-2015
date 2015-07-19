@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 namespace no_more_sweden_2015
 {
@@ -13,6 +14,7 @@ namespace no_more_sweden_2015
         public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap,
             powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer, ammo, healed, startScreen;
 
+        public static SoundEffect hit;
 
         public static SpriteFont font;
 
@@ -36,6 +38,8 @@ namespace no_more_sweden_2015
             ammo = content.Load<Texture2D>("ammo");
             healed = content.Load<Texture2D>("healed");
             startScreen = content.Load<Texture2D>("startScreen");
+
+            hit = content.Load<SoundEffect>("hit");
 
             font = content.Load<SpriteFont>("bigFont");
         }
