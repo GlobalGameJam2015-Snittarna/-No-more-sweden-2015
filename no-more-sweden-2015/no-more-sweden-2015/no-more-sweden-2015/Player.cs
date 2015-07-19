@@ -119,6 +119,7 @@ namespace no_more_sweden_2015
                     {
                         Health = 0;
                         GameObjectManager.Add(new Explosion(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                        AssetManager.explosionSfx.Play(0.2f, 0, 0);
                     }
 
                     fireTimer++;
@@ -139,6 +140,7 @@ namespace no_more_sweden_2015
                         currentState = State.dying;
                         if (!hasEjectedWings)
                         {
+                            AssetManager.explosionSfx.Play(0.2f, 0, 0);
                             GameObjectManager.Add(new Particle(Position, AssetManager.playerWing, Angle+90, rnd.Next(8, 11), 1, Color, 2000));
                             GameObjectManager.Add(new Particle(Position, AssetManager.playerWing, Angle-90, rnd.Next(8, 11), 1, Color, 2000));
                             hasEjectedWings = true;

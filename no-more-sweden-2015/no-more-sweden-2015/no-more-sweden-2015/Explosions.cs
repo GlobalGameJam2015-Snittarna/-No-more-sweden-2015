@@ -26,8 +26,6 @@ namespace no_more_sweden_2015
 
             Depth = 0.1f;
 
-            AssetManager.explosionSfx.Play(0.2f, 0, 0);
-
             Color = color2;
             Scale = scale2;
         }

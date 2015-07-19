@@ -39,6 +39,7 @@ namespace no_more_sweden_2015
                 {
                     if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
                     {
+                        AssetManager.hit.Play();
                         p.Health -= (sbyte)Damege;
                         if (p.Health <= 0) score *= 5;
                         foreach (Player p2 in GameObjectManager.gameObjects.Where(item => item is Player))
@@ -107,7 +108,6 @@ namespace no_more_sweden_2015
             {
                 GameObjectManager.Add(new Explosion(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
-            if (!isLazer) AssetManager.hit.Play();
             GameObjectManager.Remove(this);
         }
     }
