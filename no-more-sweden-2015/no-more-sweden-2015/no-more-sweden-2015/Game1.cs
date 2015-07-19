@@ -116,7 +116,18 @@ namespace no_more_sweden_2015
                         gui.Update();
                     }
                     break;
+                case GameState.Win:
+                    if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.B))
+                    {
+                        gameState = GameState.Game;
+                        GameObjectManager.gameObjects.Clear();
+                        Globals.numberOfPlayers = 0;
+                        Initialize();
+                    }
+                    break;
             }
+            if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start)) gameState = GameState.Win;
+            GC.Collect();
             base.Update(gameTime);
         }
 

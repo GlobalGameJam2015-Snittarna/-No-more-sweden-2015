@@ -81,6 +81,8 @@ namespace no_more_sweden_2015
         {
             lifeTimeCount += 1;
 
+            Console.WriteLine("L");
+
             if (lifeTimeCount >= maxLifeTimeCount) GameObjectManager.Remove(this);
         }
 

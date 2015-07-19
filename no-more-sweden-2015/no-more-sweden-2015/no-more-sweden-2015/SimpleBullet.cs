@@ -29,7 +29,7 @@ namespace no_more_sweden_2015
             MoveFoward();
             CollisionCheck();
 
-            Expire(2000);
+            Expire(1000);
 
             base.Update();
         }

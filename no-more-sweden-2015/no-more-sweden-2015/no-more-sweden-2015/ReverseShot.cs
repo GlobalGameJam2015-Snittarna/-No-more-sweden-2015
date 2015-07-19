@@ -30,7 +30,7 @@ namespace no_more_sweden_2015
 
             Deaccelerate(0.3f, -10);
 
-            Expire(2000);
+            Expire(1000);
 
             MoveFoward();
 
