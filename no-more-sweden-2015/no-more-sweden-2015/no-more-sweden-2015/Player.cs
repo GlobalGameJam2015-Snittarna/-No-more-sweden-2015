@@ -187,8 +187,6 @@ namespace no_more_sweden_2015
             }
             else
                 solid = true;
-
-            GunType = 3;
             base.Update();
         }
 
