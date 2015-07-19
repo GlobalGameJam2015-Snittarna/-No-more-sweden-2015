@@ -27,7 +27,7 @@ namespace no_more_sweden_2015
         static internal int delay = 128*2;
 
         static internal float time;
-        static internal float timeLimit = 200;
+        static internal float timeLimit = 2000;
 
         Gui gui;
         internal static Camera camera = new Camera();
