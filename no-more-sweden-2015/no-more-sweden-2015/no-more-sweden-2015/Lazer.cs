@@ -30,13 +30,13 @@ namespace no_more_sweden_2015
 
             delta = endPoint - Position;
 
-            width = 4;
+            width = 6;
 
             Sprite = AssetManager.lazer;
 
             isLazer = true;
 
-            score = 10000;
+            score = 200;
             explosive = true;
         }
 
@@ -44,7 +44,7 @@ namespace no_more_sweden_2015
         {
             width = MathHelper.Lerp(width, 0 , 0.11f);
 
-            if (width == 0) GameObjectManager.Remove(this);
+            if (width < 1f) GameObjectManager.Remove(this);
 
             CollisionCheck();
 

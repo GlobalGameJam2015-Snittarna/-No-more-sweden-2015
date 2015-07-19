@@ -110,7 +110,7 @@ namespace no_more_sweden_2015
 
 
 
-            if (!isLazer) GameObjectManager.Remove(this);
+            GameObjectManager.Remove(this);
         }
     }
 }
