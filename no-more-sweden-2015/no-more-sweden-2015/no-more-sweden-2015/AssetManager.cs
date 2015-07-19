@@ -11,19 +11,8 @@ namespace no_more_sweden_2015
     class AssetManager
     {
         public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap,
-<<<<<<< HEAD
-            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer;
-=======
-<<<<<<< HEAD
-            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield, ammo;
-=======
-<<<<<<< HEAD
-            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, lazer;
-=======
-            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield;
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer, ammo;
+
 
         public static SpriteFont font;
 
