@@ -14,7 +14,7 @@ namespace no_more_sweden_2015
 {
     class Lazer : Projectile
     {
-        float width;
+        public float width;
         Vector2 delta;
 
         public Lazer(Vector2 newPosition, float newAngle, byte newDamage, PlayerIndex newPlayerIndex)

@@ -36,7 +36,7 @@ namespace no_more_sweden_2015
 
         public static int numberOfPlayers = 0;
 
-        public const float G = 0;//.16f;
+        public const float G = .16f;
 
         public static Color[] playersColors;
 
@@ -64,7 +64,7 @@ namespace no_more_sweden_2015
 
                     Vector2 walkersPos = lazer.Position + Globals.VectorFromAngle(lazer.Angle) * i;
 
-                    if (box.Intersects(new Rectangle((int)walkersPos.X, (int)walkersPos.Y, 1, 1))) return true;
+                    if (box.Intersects(new Rectangle((int)(walkersPos.X - lazer.width / 2), (int)(walkersPos.Y - lazer.width / 2), (int)lazer.width, (int)lazer.width))) return true;
                 }
             }
             else

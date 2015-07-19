@@ -42,7 +42,7 @@ namespace no_more_sweden_2015
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
             Content.RootDirectory = "Content";
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
         }
 
         PowerUpSpawner powerUpSpawner = new PowerUpSpawner();
