@@ -60,6 +60,8 @@ namespace no_more_sweden_2015
                         {
                             p.Health += 10;
 
+                            p.healedCount = 1;
+
                             if (p.Health < 30)
                                 p.Health = 30;
 

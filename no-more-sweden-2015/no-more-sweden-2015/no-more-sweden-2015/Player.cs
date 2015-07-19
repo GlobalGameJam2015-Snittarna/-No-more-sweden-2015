@@ -26,6 +26,8 @@ namespace no_more_sweden_2015
         public int currentMaxAmmo;
         public int currentAmmo;
 
+        public byte healedCount;
+
         int cR;
         int cG;
         int cB;
@@ -88,6 +90,12 @@ namespace no_more_sweden_2015
             switch (currentState)
             {
                 case State.living:
+
+                    if (healedCount >= 1)
+                    {
+                        healedCount += 1;
+                        if (healedCount >= 16) healedCount = 0;
+                    }
 
                     if (GamePad.GetState(playerIndex).Triggers.Right > 0.5)
                     {
@@ -227,6 +235,9 @@ namespace no_more_sweden_2015
                 {
                     spriteBatch.Draw(AssetManager.shield, Position, new Rectangle(0, 0, 48, 48), Color.White, 0, new Vector2(24, 24), 1, SpriteEffects.None, Depth + 0.01f);
                 }
+
+                if(healedCount >= 1)
+                spriteBatch.Draw(AssetManager.healed, Position, new Rectangle(0, 0, 32, 32), Color.White, 0, new Vector2(16, 16), 0.7f, SpriteEffects.None, Depth + 0.01f);
 
                 base.DrawSprite(spriteBatch);
             }
