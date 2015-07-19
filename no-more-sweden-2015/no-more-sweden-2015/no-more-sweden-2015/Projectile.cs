@@ -48,16 +48,16 @@ namespace no_more_sweden_2015
             }
             else
             {
-                
+
                 foreach (Lazer l in GameObjectManager.gameObjects.Where(item => item is Lazer))
                 {
                     foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
                     {
                         if (p.playerIndex != l.PlayerIndex)
                         {
-                            if (Globals.aabbContainsSegment(l.Position.X, l.Position.Y, endPoint.X, endPoint.Y, p.HitBox.Left, p.HitBox.Right, p.HitBox.Top, p.HitBox.Bottom))
+                            if (Globals.LineToRect(l, p.HitBox))
                             {
-                                Environment.Exit(1);
+                                //Environment.Exit(1);
                                 p.Health -= (sbyte)Damege;
                                 if (p.Health <= 0) score *= 5;
                                 p.Score += score;
@@ -88,7 +88,7 @@ namespace no_more_sweden_2015
             if (Speed > limit)
                 Speed -= deaceelSpeed;
         }
-        
+
         public void Impact()
         {
             Random random = new Random();
@@ -102,7 +102,7 @@ namespace no_more_sweden_2015
                 GameObjectManager.Add(new Explosion(Position, 0.4f, false, Color.MediumVioletRed, random));
             }
 
-            
+
 
             GameObjectManager.Remove(this);
         }

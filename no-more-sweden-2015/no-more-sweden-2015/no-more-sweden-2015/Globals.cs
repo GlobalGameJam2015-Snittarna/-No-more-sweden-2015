@@ -36,7 +36,7 @@ namespace no_more_sweden_2015
 
         public static int numberOfPlayers = 0;
 
-        public const float G = .16f;
+        public const float G = 0;//.16f;
 
         public static Color[] playersColors;
 
@@ -46,27 +46,33 @@ namespace no_more_sweden_2015
                 p.Score += score;
         }
 
-        public static bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
+        public static bool LineToRect(Lazer lazer, Rectangle box)
         {
-            // Completely outside.
-            if ((x1 <= minX && x2 <= minX) || (y1 <= minY && y2 <= minY) || (x1 >= maxX && x2 >= maxX) || (y1 >= maxY && y2 >= maxY))
+            Vector2 rectDelta = new Vector2(box.Center.X, box.Center.Y) - lazer.Position;
+            float boxAngle = (float)Math.Atan2(rectDelta.Y, rectDelta.X);
+
+            float angle = lazer.Angle;
+
+            if (angle < -180) angle += 360;
+            if (angle > 180) angle -= 360;
+
+            if (boxAngle > angle - 45 && boxAngle < angle + 45)
+            {
+                for (int i = 0; i < lazer.length; i++)
+                {
+                    if (i > rectDelta.Length() + 20) return false;
+
+                    Vector2 walkersPos = lazer.Position + Globals.VectorFromAngle(lazer.Angle) * i;
+
+                    if (box.Intersects(new Rectangle((int)walkersPos.X, (int)walkersPos.Y, 1, 1))) return true;
+                }
+            }
+            else
                 return false;
 
-            float m = (y2 - y1) / (x2 - x1);
-
-            float y = m * (minX - x1) + y1;
-            if (y > minY && y < maxY) return true;
-
-            y = m * (maxX - x1) + y1;
-            if (y > minY && y < maxY) return true;
-
-            float x = (minY - y1) / m + x1;
-            if (x > minX && x < maxX) return true;
-
-            x = (maxY - y1) / m + x1;
-            if (x > minX && x < maxX) return true;
 
             return false;
         }
+
     }
 }

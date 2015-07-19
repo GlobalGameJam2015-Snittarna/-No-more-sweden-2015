@@ -24,7 +24,7 @@ namespace no_more_sweden_2015
             Damege = newDamage;
             PlayerIndex = newPlayerIndex;
 
-            length = 1000;
+            length = 10000;
 
             endPoint = Position + Globals.VectorFromAngle(Angle) * length;
 

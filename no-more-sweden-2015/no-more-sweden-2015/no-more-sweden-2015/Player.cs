@@ -52,7 +52,7 @@ namespace no_more_sweden_2015
         public Player(PlayerIndex newPlayerIndex, Vector2 newPosition, Random rnd)
         {
             playerIndex = newPlayerIndex;
-            Angle = -90;
+            Angle = 0;// -90;
             Speed = 8;
             turnSpeed = 4;
             Scale = 1;
@@ -81,8 +81,8 @@ namespace no_more_sweden_2015
                 }
             }
 
-            GunType = 0;
-            velocity.Y = -8;
+            GunType = 3;
+            //velocity.Y = -8;
         }
 
         public override void Update()
