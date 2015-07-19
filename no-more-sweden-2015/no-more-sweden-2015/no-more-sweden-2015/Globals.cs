@@ -36,18 +36,17 @@ namespace no_more_sweden_2015
 
         public static int numberOfPlayers = 0;
 
-        public const float G = .16f;
+        public const float G = 0;//.16f;
 
         public static Color[] playersColors;
 
         public void AddScore(PlayerIndex player, int score)
         {
             foreach (Player p in GameObjectManager.gameObjects.Where(O => O is Player))
-                p.Score += score;   
-            
+                p.Score += score;
         }
 
-        public bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
+        public static bool aabbContainsSegment(float x1, float y1, float x2, float y2, float minX, float minY, float maxX, float maxY)
         {
             // Completely outside.
             if ((x1 <= minX && x2 <= minX) || (y1 <= minY && y2 <= minY) || (x1 >= maxX && x2 >= maxX) || (y1 >= maxY && y2 >= maxY))

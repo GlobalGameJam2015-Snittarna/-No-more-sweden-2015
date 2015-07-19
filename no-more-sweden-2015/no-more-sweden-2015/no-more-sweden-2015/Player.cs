@@ -50,7 +50,7 @@ namespace no_more_sweden_2015
         public Player(PlayerIndex newPlayerIndex, Vector2 newPosition, Random rnd)
         {
             playerIndex = newPlayerIndex;
-            Angle = -90;
+            Angle = 0;// -90;
             Speed = 8;
             turnSpeed = 4;
             Scale = 1;
@@ -78,8 +78,8 @@ namespace no_more_sweden_2015
                 }
             }
 
-            GunType = 0;
-            velocity.Y = -8;
+            GunType = 3;
+            //velocity.Y = -8;
         }
 
         public override void Update()
@@ -119,6 +119,8 @@ namespace no_more_sweden_2015
                         fireTimer = 0;
                     }
 
+                    if (GamePad.GetState(playerIndex).Buttons.B == ButtonState.Pressed) currentState = State.dying;
+
                     Color = new Color(currentColor.R + cR * (30 - Health), cG * Health, cB * Health);
 
 
@@ -128,7 +130,7 @@ namespace no_more_sweden_2015
                 case State.dying:
 
                     velocity.Y += Globals.G;
-                    GameObjectManager.Add(new Explosion(Position, 0.5f + (float)rnd.NextDouble(), false, Color.Red, rnd));
+                    GameObjectManager.Add(new Explosion(Position, 0.5f + ((float)rnd.NextDouble() * 0.2f), false, Color.Red, rnd));
                     Position += velocity;
 
                     Vector2 vel = Vector2.Normalize(velocity);
@@ -187,16 +189,16 @@ namespace no_more_sweden_2015
                     currentMaxAmmo = 200;
                     GameObjectManager.Add(new Flame(Position + Velocity * 20, 1, Angle + rnd.Next(-8, 9), Speed * 1.5f, playerIndex));
                     break;
-                case 3: // Homing shot;
-                    fireRate = 16;
-                    currentMaxAmmo = 10;
-                    GameObjectManager.Add(new Rocket(Position + Velocity * 20, 5, Angle, Speed * 1.5f, 0.1f, playerIndex));
+                case 3: // LAZER shot;
+                    fireRate = 32;
+                    currentMaxAmmo = 1;
+                    GameObjectManager.Add(new Lazer(Position + Velocity * 20, Angle, 100, playerIndex));
                     break;
                 case 4: // spread shot;
                     fireRate = 32;
                     currentMaxAmmo = 20;
                     for (int i = -2; i < 3; i++)
-                        GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 5, Angle + 5 * i, Speed * 1.5f, playerIndex));
+                        GameObjectManager.Add(new SimpleBullet(Position + Velocity * 20, 10, Angle + 5 * i, Speed * 1.5f, playerIndex));
                     break;
                 case 5: // machine shot;
                     fireRate = 4;
