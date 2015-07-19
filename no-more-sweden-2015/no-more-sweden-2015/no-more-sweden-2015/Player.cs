@@ -50,7 +50,7 @@ namespace no_more_sweden_2015
         public Player(PlayerIndex newPlayerIndex, Vector2 newPosition, Random rnd)
         {
             playerIndex = newPlayerIndex;
-            Angle = 0;// -90;
+            Angle = -90;
             Speed = 8;
             turnSpeed = 4;
             Scale = 1;
@@ -79,8 +79,8 @@ namespace no_more_sweden_2015
                 }
             }
 
-            GunType = 3;
-            //velocity.Y = -8;
+            GunType = 0;
+            velocity.Y = -8;
         }
 
         public override void Update()
@@ -224,7 +224,7 @@ namespace no_more_sweden_2015
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
 
-                if (solid)
+                if (!solid)
                 {
                     spriteBatch.Draw(AssetManager.shield, Position, new Rectangle(0, 0, 48, 48), Color.White, 0, new Vector2(24, 24), 1, SpriteEffects.None, Depth + 0.01f);
                 }

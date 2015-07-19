@@ -33,20 +33,20 @@ namespace no_more_sweden_2015
         public void CollisionCheck()
         {
 
-            //if (!isLazer)
-            //{
-            //    foreach (Player p in GameObjectManager.gameObjects.Where(item => item.solid == true))
-            //    {
-            //        if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
-            //        {
-            //            p.Health -= (sbyte)Damege;
-            //            if (p.Health <= 0) score *= 5;
-            //            p.Score += score;
-            //            Impact();
-            //        }
-            //    }
-            //}
-            //else
+            if (!isLazer)
+            {
+                foreach (Player p in GameObjectManager.gameObjects.Where(item => item.solid == true))
+                {
+                    if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
+                    {
+                        p.Health -= (sbyte)Damege;
+                        if (p.Health <= 0) score *= 5;
+                        p.Score += score;
+                        Impact();
+                    }
+                }
+            }
+            else
             {
                 
                 foreach (Lazer l in GameObjectManager.gameObjects.Where(item => item is Lazer))

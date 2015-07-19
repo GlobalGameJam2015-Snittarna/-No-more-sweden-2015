@@ -36,7 +36,7 @@ namespace no_more_sweden_2015
 
         public static int numberOfPlayers = 0;
 
-        public const float G = 0;//.16f;
+        public const float G = .16f;
 
         public static Color[] playersColors;
 
