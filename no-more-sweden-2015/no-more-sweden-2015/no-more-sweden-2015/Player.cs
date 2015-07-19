@@ -193,6 +193,8 @@ namespace no_more_sweden_2015
         {
             currentAmmo++;
 
+            if (GunType != 3 && GunType != 2) AssetManager.shoot.Play();
+
             switch (GunType)
             {
                 case 0: // simple shot;
