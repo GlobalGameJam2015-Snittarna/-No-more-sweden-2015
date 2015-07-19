@@ -163,7 +163,7 @@ namespace no_more_sweden_2015
             {
                 if (p.currentState != Player.State.living)
                 {
-                    spriteBatch.DrawString(AssetManager.font, "GET READY PLAYER " + p.playerIndex.ToString().ToUpper() + "!", new Vector2(320, 140+offSetNames*20), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GET READY PLAYER" + p.playerIndex.ToString().ToUpper() + " !").X / 2, AssetManager.font.MeasureString("GET READY!").Y / 2), 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(AssetManager.font, "GET READY PLAYER " + p.playerIndex.ToString().ToUpper() + "!", new Vector2(320, 140+offSetNames*20), p.Color, 0, new Vector2(AssetManager.font.MeasureString("GET READY PLAYER" + p.playerIndex.ToString().ToUpper() + " !").X / 2, AssetManager.font.MeasureString("GET READY!").Y / 2), 1, SpriteEffects.None, 0);
                     offSetNames += 1;
                 }
             }
@@ -172,7 +172,7 @@ namespace no_more_sweden_2015
             {
                 spriteBatch.Draw(AssetManager.startScreen, Vector2.Zero, Color.White);
                 spriteBatch.DrawString(AssetManager.font, "PRESS # TO START", new Vector2(225, 400), Color.White);
-                spriteBatch.DrawString(AssetManager.font, "# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").X / 2, AssetManager.font.MeasureString("# TO SHOOT, RIGHT TRIGGER TO ACCELERATE AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").Y / 2), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(AssetManager.font, "# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nRIGHT TRIGER TO ACCELERATE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").X / 2, AssetManager.font.MeasureString("# TO SHOOT, RIGHT TRIGGER TO ACCELERATE AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").Y / 2), 1, SpriteEffects.None, 0);
 
             }
             if (gameState == GameState.Win)
