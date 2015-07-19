@@ -158,6 +158,16 @@ namespace no_more_sweden_2015
             gui.Draw(spriteBatch);
             if(time < timeLimit) spriteBatch.DrawString(AssetManager.font, "TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString(), new Vector2(320, 40), Color.White, 0, new Vector2(AssetManager.font.MeasureString("TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString()).X / 2, AssetManager.font.MeasureString("TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString()).Y / 2), 1, SpriteEffects.None, 0);
             if (delay > 0) spriteBatch.DrawString(AssetManager.font, "GET READY!", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GET READY!").X/2, AssetManager.font.MeasureString("GET READY!").Y/2), 1, SpriteEffects.None, 0);
+            int offSetNames = 0;
+            foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
+            {
+                if (p.currentState != Player.State.living)
+                {
+                    spriteBatch.DrawString(AssetManager.font, "GET READY PLAYER " + p.playerIndex.ToString().ToUpper() + "!", new Vector2(320, 140+offSetNames*20), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GET READY PLAYER" + p.playerIndex.ToString().ToUpper() + " !").X / 2, AssetManager.font.MeasureString("GET READY!").Y / 2), 1, SpriteEffects.None, 0);
+                    offSetNames += 1;
+                }
+            }
+            offSetNames = 0;
             if (gameState == GameState.StartScreen)
             {
                 spriteBatch.Draw(AssetManager.startScreen, Vector2.Zero, Color.White);
