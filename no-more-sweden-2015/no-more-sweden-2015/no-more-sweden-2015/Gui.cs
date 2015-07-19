@@ -134,7 +134,7 @@ namespace no_more_sweden_2015
                         for (int j = 0; j < ammos[i] / 8; j++)
                         {
                             sbyte tmp = (pushOutFromScreen) ? (sbyte)-1 : (sbyte)1;
-                            spriteBatch.Draw(AssetManager.ammo, new Vector2((i*300) - 600 + (j * 2) * tmp, 450), new Rectangle(frame, 0, 4, 16), Color.White);
+                            spriteBatch.Draw(AssetManager.ammo, new Vector2((i*640) - 600 + (j * 2) * tmp, 450), new Rectangle(frame, 0, 4, 16), Color.White);
                         }
                     }
                 }

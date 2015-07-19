@@ -26,6 +26,9 @@ namespace no_more_sweden_2015
 
         static internal int delay = 128*2;
 
+        static internal float time;
+        static internal float timeLimit = 200;
+
         Gui gui;
         internal static Camera camera = new Camera();
 
@@ -114,6 +117,10 @@ namespace no_more_sweden_2015
                         camera.Update();
 
                         gui.Update();
+
+                        if (delay <= 0) time += 0.1f;
+
+                        if (time >= timeLimit) gameState = GameState.Win;
                     }
                     break;
                 case GameState.Win:
@@ -122,6 +129,7 @@ namespace no_more_sweden_2015
                         gameState = GameState.Game;
                         GameObjectManager.gameObjects.Clear();
                         Globals.numberOfPlayers = 0;
+                        time = 0;
                         Initialize();
                     }
                     break;
@@ -148,6 +156,7 @@ namespace no_more_sweden_2015
             spriteBatch.End();
             spriteBatch.Begin();
             gui.Draw(spriteBatch);
+            if(time < timeLimit) spriteBatch.DrawString(AssetManager.font, "TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString(), new Vector2(320, 40), Color.White, 0, new Vector2(AssetManager.font.MeasureString("TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString()).X / 2, AssetManager.font.MeasureString("TIME LEFT: " + Convert.ToInt32(timeLimit - time).ToString()).Y / 2), 1, SpriteEffects.None, 0);
             if (delay > 0) spriteBatch.DrawString(AssetManager.font, "GET READY!", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GET READY!").X/2, AssetManager.font.MeasureString("GET READY!").Y/2), 1, SpriteEffects.None, 0);
             if (gameState == GameState.StartScreen)
             {
@@ -155,6 +164,24 @@ namespace no_more_sweden_2015
                 spriteBatch.DrawString(AssetManager.font, "PRESS # TO START", new Vector2(225, 400), Color.White);
                 spriteBatch.DrawString(AssetManager.font, "# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("# TO SHOOT AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").X / 2, AssetManager.font.MeasureString("# TO SHOOT, RIGHT TRIGGER TO ACCELERATE AND LEFT THUMBSTICK TO MOVE\nSHOOT ALL OTHER PLAYERS AND GET POWER-UPS").Y / 2), 1, SpriteEffects.None, 0);
 
+            }
+            if (gameState == GameState.Win)
+            {
+                spriteBatch.DrawString(AssetManager.font, "GAME OVER!", new Vector2(320, 40), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GAME OVER!").X / 2, AssetManager.font.MeasureString("GAME OVER!").Y / 2), 1, SpriteEffects.None, 0);
+
+                foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
+                {
+                    foreach (Player p2 in GameObjectManager.gameObjects.Where(item => item is Player))
+                    {
+                        if (p != p2)
+                        {
+                            if (p.Score > p2.Score)
+                            {
+                                spriteBatch.DrawString(AssetManager.font, "PLAYER " + p.playerIndex.ToString().ToUpper() + " WON THE GAME!", new Vector2(320, 140), Color.White, 0, new Vector2(AssetManager.font.MeasureString("PLAYER " + p.playerIndex.ToString() + "WON THE GAME!").X / 2, AssetManager.font.MeasureString("PLAYER " + p.playerIndex.ToString()).Y / 2), 1, SpriteEffects.None, 0);
+                            }
+                        }
+                    }
+                }
             }
             spriteBatch.End();
 
