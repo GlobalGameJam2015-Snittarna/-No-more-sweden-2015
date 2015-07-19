@@ -30,17 +30,19 @@ namespace no_more_sweden_2015
 
             delta = endPoint - Position;
 
-            width = 8;
+            width = 4;
 
             Sprite = AssetManager.lazer;
 
             isLazer = true;
+
+            score = 10000;
             explosive = true;
         }
 
         public override void Update()
         {
-            width -= 0.2f;
+            width = MathHelper.Lerp(width, 0 , 0.11f);
 
             if (width == 0) GameObjectManager.Remove(this);
 
@@ -52,7 +54,7 @@ namespace no_more_sweden_2015
         public override void DrawSprite(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(Sprite, new Rectangle((int)Position.X, (int)Position.Y, length, (int)width), null, Color.White, Globals.DegreesToRadian(Angle), new Vector2(0, width / 2), SpriteEffects.None, 1);
+            spriteBatch.Draw(Sprite, Position, null, Color.White, Globals.DegreesToRadian(Angle), new Vector2(0, Sprite.Height/2), new Vector2(length, width), SpriteEffects.None, 1);
 
             //base.DrawSprite(spriteBatch);
         }

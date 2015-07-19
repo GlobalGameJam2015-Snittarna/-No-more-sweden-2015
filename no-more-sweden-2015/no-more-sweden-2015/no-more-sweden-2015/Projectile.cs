@@ -61,7 +61,6 @@ namespace no_more_sweden_2015
                         {
                             if (Globals.LineToRect(l, p.HitBox))
                             {
-                                //Environment.Exit(1);
                                 p.Health -= (sbyte)Damege;
                                 if (p.Health <= 0) score *= 5;
                                 foreach (Player p2 in GameObjectManager.gameObjects.Where(item => item is Player))
@@ -111,7 +110,7 @@ namespace no_more_sweden_2015
 
 
 
-            GameObjectManager.Remove(this);
+            if (!isLazer) GameObjectManager.Remove(this);
         }
     }
 }
