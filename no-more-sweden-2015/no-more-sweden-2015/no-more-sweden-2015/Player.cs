@@ -121,13 +121,13 @@ namespace no_more_sweden_2015
 
                     fireTimer++;
 
-                    if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate)
+                    if (GamePad.GetState(playerIndex).Buttons.A == ButtonState.Pressed && fireTimer >= fireRate && Game1.delay <= 0)
                     {
                         Shoot();
                         fireTimer = 0;
                     }
 
-                    if (GamePad.GetState(playerIndex).Buttons.B == ButtonState.Pressed) currentState = State.dying;
+                    //if (GamePad.GetState(playerIndex).Buttons.B == ButtonState.Pressed) currentState = State.dying;
 
                     Color = new Color(currentColor.R + cR * (30 - Health), cG * Health, cB * Health);
 

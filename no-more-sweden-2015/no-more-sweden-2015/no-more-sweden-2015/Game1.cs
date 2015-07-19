@@ -14,10 +14,17 @@ namespace no_more_sweden_2015
     /// <summary>
     /// This is the main type for your game
     /// </summary>
+    /// 
+
+    enum GameState { StartScreen, Game, Win };
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        static internal GameState gameState = GameState.StartScreen;
+
+        static internal int delay = 128*2;
 
         Gui gui;
         internal static Camera camera = new Camera();
@@ -90,14 +97,26 @@ namespace no_more_sweden_2015
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            powerUpSpawner.Update();
+            switch (gameState)
+            {
+                case GameState.StartScreen:
+                    if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) gameState = GameState.Game;
+                    break;
+                case GameState.Game:
+                    if (delay > 0) delay -= 1;
 
-            GameObjectManager.Update();
-            gui.Update();
-            camera.Update();
+                    if (delay <= 0 || delay >= (128*2)-38)
+                    {
+                        powerUpSpawner.Update();
 
-            gui.Update();
+                        GameObjectManager.Update();
+                        gui.Update();
+                        camera.Update();
 
+                        gui.Update();
+                    }
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -118,6 +137,12 @@ namespace no_more_sweden_2015
             spriteBatch.End();
             spriteBatch.Begin();
             gui.Draw(spriteBatch);
+            if (delay > 0) spriteBatch.DrawString(AssetManager.font, "GET READY!", new Vector2(320, 240), Color.White, 0, new Vector2(AssetManager.font.MeasureString("GET READY!").X/2, AssetManager.font.MeasureString("GET READY!").Y/2), 1, SpriteEffects.None, 0);
+            if (gameState == GameState.StartScreen)
+            {
+                spriteBatch.Draw(AssetManager.startScreen, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(AssetManager.font, "PRESS # TO START", new Vector2(225, 400), Color.White);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -11,7 +11,7 @@ namespace no_more_sweden_2015
     class AssetManager
     {
         public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap,
-            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer, ammo, healed;
+            powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer, ammo, healed, startScreen;
 
 
         public static SpriteFont font;
@@ -35,6 +35,7 @@ namespace no_more_sweden_2015
             shield = content.Load<Texture2D>("shield");
             ammo = content.Load<Texture2D>("ammo");
             healed = content.Load<Texture2D>("healed");
+            startScreen = content.Load<Texture2D>("startScreen");
 
             font = content.Load<SpriteFont>("bigFont");
         }
