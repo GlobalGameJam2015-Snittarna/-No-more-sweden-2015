@@ -20,6 +20,10 @@ namespace no_more_sweden_2015
 
         public int score;
 
+        public bool isLazer = false;
+        public int length;
+        public Vector2 endPoint = Vector2.Zero;
+
         public override void Update()
         {
             if (Position.Y >= 0) Impact();
@@ -28,14 +32,39 @@ namespace no_more_sweden_2015
 
         public void CollisionCheck()
         {
-            foreach(Player p in GameObjectManager.gameObjects.Where(item => item.solid == true))
+
+            //if (!isLazer)
+            //{
+            //    foreach (Player p in GameObjectManager.gameObjects.Where(item => item.solid == true))
+            //    {
+            //        if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
+            //        {
+            //            p.Health -= (sbyte)Damege;
+            //            if (p.Health <= 0) score *= 5;
+            //            p.Score += score;
+            //            Impact();
+            //        }
+            //    }
+            //}
+            //else
             {
-                if (HitBox.Intersects(p.HitBox) && p.playerIndex != PlayerIndex)
+                
+                foreach (Lazer l in GameObjectManager.gameObjects.Where(item => item is Lazer))
                 {
-                    p.Health -= (sbyte)Damege;
-                    if (p.Health <= 0) score *= 5;
-                    p.Score += score;
-                    Impact();
+                    foreach (Player p in GameObjectManager.gameObjects.Where(item => item is Player))
+                    {
+                        if (p.playerIndex != l.PlayerIndex)
+                        {
+                            if (Globals.aabbContainsSegment(l.Position.X, l.Position.Y, endPoint.X, endPoint.Y, p.HitBox.Left, p.HitBox.Right, p.HitBox.Top, p.HitBox.Bottom))
+                            {
+                                Environment.Exit(1);
+                                p.Health -= (sbyte)Damege;
+                                if (p.Health <= 0) score *= 5;
+                                p.Score += score;
+                                Impact();
+                            }
+                        }
+                    }
                 }
             }
         }
