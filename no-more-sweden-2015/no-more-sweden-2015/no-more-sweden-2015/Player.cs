@@ -16,7 +16,7 @@ namespace no_more_sweden_2015
     {
         public PlayerIndex playerIndex;
         float turnSpeed;
-        public byte GunType { private get; set; }
+        public byte GunType { get; set; }
         public byte InvicibleCounter { private get; set; }
         public int Score { get; set; }
 
@@ -85,7 +85,6 @@ namespace no_more_sweden_2015
 
         public override void Update()
         {
-            solid = false;
             switch (currentState)
             {
                 case State.living:
