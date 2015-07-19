@@ -120,6 +120,7 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Gui.cs" />
     <Compile Include="Lazer.cs" />
+    <Compile Include="Particle.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="PowerUpSpawner.cs" />

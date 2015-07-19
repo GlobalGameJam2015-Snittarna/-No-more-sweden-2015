@@ -34,6 +34,8 @@ namespace no_more_sweden_2015
 
         int respawnTimer;
 
+        bool hasEjectedWings;
+
         Vector2 velocity;
 
         Random rnd = new Random();
@@ -132,7 +134,16 @@ namespace no_more_sweden_2015
                     Color = new Color(currentColor.R + cR * (30 - Health), cG * Health, cB * Health);
 
 
-                    if (Health <= 0) currentState = State.dying;
+                    if (Health <= 0)
+                    {
+                        currentState = State.dying;
+                        if (!hasEjectedWings)
+                        {
+                            GameObjectManager.Add(new Particle(Position, AssetManager.playerWing, Angle+90, rnd.Next(8, 11), 1, Color, 2000));
+                            GameObjectManager.Add(new Particle(Position, AssetManager.playerWing, Angle-90, rnd.Next(8, 11), 1, Color, 2000));
+                            hasEjectedWings = true;
+                        }
+                    }
 
                     break;
                 case State.dying:
@@ -163,6 +174,7 @@ namespace no_more_sweden_2015
                         GunType = 0;
                         currentAmmo = 0;
                         Color = currentColor;
+                        hasEjectedWings = false;
                     }
                     break;
             }
@@ -225,9 +237,11 @@ namespace no_more_sweden_2015
         {
             if (currentState != State.dead)
             {
-                spriteBatch.Draw(AssetManager.playerWing, Position + Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, AssetManager.playerWing.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
-                spriteBatch.Draw(AssetManager.playerWing, Position - Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
-
+                if (currentState != State.dying)
+                {
+                    spriteBatch.Draw(AssetManager.playerWing, Position + Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, AssetManager.playerWing.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
+                    spriteBatch.Draw(AssetManager.playerWing, Position - Globals.VectorFromAngle(Angle - 90) * 5, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerWing.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
+                }
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) + Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, AssetManager.playerFlap.Height), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.None, Depth);
                 spriteBatch.Draw(AssetManager.playerFlap, Position - (Velocity * 14) - Globals.VectorFromAngle(Angle - 90) * 2, null, Color, Globals.DegreesToRadian(Rotation), new Vector2(AssetManager.playerFlap.Width / 2, 0), new Vector2(1, (float)Math.Abs(Math.Sin(Globals.DegreesToRadian(Angle)))), SpriteEffects.FlipVertically, Depth);
 
