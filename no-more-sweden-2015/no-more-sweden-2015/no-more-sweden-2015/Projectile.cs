@@ -41,7 +41,11 @@ namespace no_more_sweden_2015
                     {
                         p.Health -= (sbyte)Damege;
                         if (p.Health <= 0) score *= 5;
-                        p.Score += score;
+                        foreach (Player p2 in GameObjectManager.gameObjects.Where(item => item is Player))
+                        {
+                            if (p2.playerIndex == PlayerIndex)
+                                p2.Score += score;
+                        }
                         Impact();
                     }
                 }
@@ -60,7 +64,11 @@ namespace no_more_sweden_2015
                                 //Environment.Exit(1);
                                 p.Health -= (sbyte)Damege;
                                 if (p.Health <= 0) score *= 5;
-                                p.Score += score;
+                                foreach (Player p2 in GameObjectManager.gameObjects.Where(item => item is Player))
+                                {
+                                    if (p2.playerIndex == PlayerIndex)
+                                        p2.Score += score;
+                                }
                                 Impact();
                             }
                         }
