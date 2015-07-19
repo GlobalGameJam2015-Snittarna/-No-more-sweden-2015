@@ -14,7 +14,7 @@ namespace no_more_sweden_2015
         public static Texture2D genericProjectile, explosion, playerBody, playerWing, playerFlap,
             powerUpBox, powerUps, flames, backgroundObject, rocket, ground, dirt, shield,lazer, ammo, healed, startScreen;
 
-        public static SoundEffect hit, shoot;
+        public static SoundEffect hit, shoot, explosionSfx;
 
         public static SpriteFont font;
 
@@ -41,6 +41,7 @@ namespace no_more_sweden_2015
 
             hit = content.Load<SoundEffect>("hit");
             shoot = content.Load<SoundEffect>("shoot");
+            explosionSfx = content.Load<SoundEffect>("ExplosionSfx");
 
             font = content.Load<SpriteFont>("bigFont");
         }

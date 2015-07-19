@@ -172,8 +172,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion.wav">
-      <Name>Explosion</Name>
+    <Compile Include="ExplosionSfx.wav">
+      <Name>ExplosionSfx</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
