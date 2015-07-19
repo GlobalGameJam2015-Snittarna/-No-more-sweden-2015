@@ -123,8 +123,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="lazer.png">
       <Name>lazer</Name>
+=======
+    <Compile Include="shield.png">
+      <Name>shield</Name>
+>>>>>>> origin/master
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
