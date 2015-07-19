@@ -188,6 +188,7 @@ namespace no_more_sweden_2015
             else
                 solid = true;
 
+            GunType = 2;
             base.Update();
         }
 
@@ -196,6 +197,8 @@ namespace no_more_sweden_2015
             currentAmmo++;
 
             if (GunType != 3 && GunType != 2) AssetManager.shoot.Play();
+
+            if (GunType == 2) AssetManager.flameSfx.Play(0.3f, 0, 0);
 
             switch (GunType)
             {
